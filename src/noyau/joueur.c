@@ -17,14 +17,13 @@ joueur creer_joueur(position pos) {
     j->vie = VIE;
     j->pos = pos;
     j->vit = DEFAULT;
-
+    return j;
 }
 
 void liberer_joueur(joueur j){
     
     if(j != NULL){
         liberer_position(j->pos);
-        free(j);
         free(j);
         j = NULL;
     }
