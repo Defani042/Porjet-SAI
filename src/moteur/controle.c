@@ -10,8 +10,8 @@ S: rien
 A: Gaultier
 */
 void avancer(){
-    eyeX++;
-    xO++;
+    eyeX--;
+    xO--;
 }
 
 /*
@@ -32,8 +32,8 @@ S: rien
 A: Gaultier
 */
 void reculer(){
-    eyeX--;
-    xO--;
+    eyeX++;
+    xO++;
 }
 
 /*
@@ -48,12 +48,35 @@ void droite(){
 }
 
 /*
+R: Permet de monter
+E: rien
+S: rien 
+A: Gaultier
+*/
+void haut(){
+    eyeZ++;
+    zO++;
+}
+
+/*
+R: Permet de descendre
+E: rien
+S: rien 
+A: Gaultier
+*/
+void bas(){
+    eyeZ--;
+    zO--;
+}
+
+/*
 R: Permet de gerer toutes les touches du clavier
 E: la touche et les coordonnées de la souris
 S: rien
 A: Gaultier
 */
 void gerer_clavier(unsigned char touche, int x, int y){
+    int mod = glutGetModifiers(); /*récupère Ctrl, Shift, Alt*/
     switch(touche){
         case 'Z' :
         case 'z' : avancer();break;
@@ -66,6 +89,11 @@ void gerer_clavier(unsigned char touche, int x, int y){
 
         case 'D' :
         case 'd' : droite();break;
+
+        case ' ' : haut();break;
+
+        case 'C' :
+        case 'c' : bas();break;
     }
 }
 

@@ -4,12 +4,12 @@
 #include "moteur/controle.h"
 
 /*variables globales*/
-int xO = 0;
-int yO = 0;
-int zO = 0;
-int eyeX = 60;
-int eyeY = 60;
-int eyeZ = 60;
+int xO = -71;
+int yO = -41;
+int zO = 2;
+int eyeX = -11;
+int eyeY = -41;
+int eyeZ = 2;
 int upX = 0;
 int upY = 0;
 int upZ = 1;
@@ -19,6 +19,9 @@ int b = -5;
 int top = 5;
 int n = 5;
 int f = 1000;
+float camYaw = 0.0f;
+float camPitch = 0.0f;
+float camSpeed = 1.0f;
 
 /*
 R: permet de dessiner un parallepipede
@@ -105,6 +108,7 @@ void affichage(){
     drawParallelepiped(-40,-40,-5,40,40,5);
 
     glutKeyboardFunc(gerer_clavier);
+    printf("ex,ey,ez,xO,y0,z0 : %d,%d,%d,%d,%d,%d\n", eyeX,eyeY,eyeZ,xO,yO,zO);
 
     glEnd();
 
