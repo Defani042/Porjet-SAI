@@ -42,4 +42,8 @@ void utiliser_jetpack(joueur j);
 
 void degat(int deg,joueur j);
 
+void amelirorer_stat(joueur j,int stat,double val);
+
+void niveau_suivant(joueur j);
+
 #endif /*_JOUEUR_H_*/

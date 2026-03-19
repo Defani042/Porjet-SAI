@@ -105,7 +105,7 @@ void degat(int deg,joueur j){
 
 /*
 R: fonction d'amelioration des stats du joueur 
-E: 1 TAD joueur 
+E: 1 TAD joueur 1 entier (INDEXE DE LA STATS) 1 double (valueur d'augmentation) 
 S: vide
 A: Adrien
 */
@@ -126,6 +126,12 @@ void amelirorer_stat(joueur j,int stat,double val){
     }
 }
 
+/*
+R: fonction de gestion du niveau des joueur 
+E: 1 TAD joueur 
+S: vide
+A: Adrien
+*/
 void niveau_suivant(joueur j){
     if(j->xp <= j->niv*j->seuil){
         j->xp -= j->seuil*j->niv;
