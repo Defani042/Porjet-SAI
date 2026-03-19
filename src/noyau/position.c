@@ -3,6 +3,12 @@
 
 #include "noyau/position.h"
 
+/*
+R: création d'une position
+E: 3 double les coordonnées
+S: 1 TAD position
+A: Adrien
+*/
 position creer_position(double x, double y , double z){
     position p = NULL;
     if ((p = (position)malloc(sizeof(s_position))) == NULL)
@@ -15,6 +21,13 @@ position creer_position(double x, double y , double z){
     p->z = z;
     return p;
 }
+
+/*
+R: libération d'une position en mémoire
+E: 1 TAD position
+S: rien
+A: Adrien
+*/
 void liberer_position(position p){
     if(p != NULL){
         free(p);
