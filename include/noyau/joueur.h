@@ -3,13 +3,16 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+
+
+#include "config/config.h"
+#include "noyau/position.h"
 
 #define DEFAULT 1;
 #define VIE 100;
 #define ATK 10;
 #define JET 50;
-
-#include "noyau/position.h"
 
 typedef struct s_joueur
 {
@@ -30,5 +33,7 @@ joueur creer_joueur(position pos);
 void liberer_joueur(joueur j);
 
 void deplacement(joueur j,double dirx,double diry,double dirz);
+
+void utiliser_jetpack(joueur j);
 
 #endif /*_JOUEUR_H_*/
