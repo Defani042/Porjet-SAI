@@ -2,6 +2,7 @@
 #define AFFICHAGE_C
 
 #include "moteur/controle.h"
+#include <time.h>
 
 /*variables globales*/
 int xO = -71;
@@ -78,7 +79,13 @@ S: rien
 A: Gaultier
 */
 void animer(){
-    glutPostRedisplay();
+    static clock_t last_time = 0;
+    clock_t current_time = clock();
+    if (!(current_time - last_time < CLOCKS_PER_SEC / 30)){
+        last_time = current_time;
+        update();
+        glutPostRedisplay();
+    }
 }
 
 /*
@@ -107,8 +114,7 @@ void affichage(){
     /*Zone d'affichage*/
     drawParallelepiped(-40,-40,-5,40,40,5);
 
-    glutKeyboardFunc(gerer_clavier);
-    printf("ex,ey,ez,xO,y0,z0 : %d,%d,%d,%d,%d,%d\n", eyeX,eyeY,eyeZ,xO,yO,zO);
+    /*printf("ex,ey,ez,xO,y0,z0 : %d,%d,%d,%d,%d,%d\n", eyeX,eyeY,eyeZ,xO,yO,zO);*/
 
     glEnd();
 

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "moteur/affichage.h"
+#include "moteur/controle.h"
 
 int main(int argc, char *argv[]){
     glutInit(&argc, argv);                
@@ -13,6 +14,8 @@ int main(int argc, char *argv[]){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glutDisplayFunc(affichage);   
     glutIdleFunc(animer);
+    glutKeyboardFunc(clavier_down);
+    glutKeyboardUpFunc(clavier_up);
     glutMainLoop();
     exit(EXIT_SUCCESS);
 }

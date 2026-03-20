@@ -16,7 +16,15 @@ void reculer();
 
 void droite();
 
-void gerer_clavier(unsigned char touche, int x, int y);
+void haut();
+
+void bas();
+
+void clavier_down(unsigned char touche, int x, int y);
+
+void clavier_up(unsigned char touche, int x, int y);
+
+void update();
 
 void gerer_souris(int bouton, int etat, int x, int y);
 

@@ -3,6 +3,8 @@
 
 #include "moteur/controle.h"
 
+int touches[256] = {0};
+
 /*
 R: Permet d'avancer
 E: rien
@@ -70,31 +72,54 @@ void bas(){
 }
 
 /*
+R: Permet de mettre à jour le tableau de touches actives
+E: la touche et les coordonnées de la souris
+S: rien
+A: Gaultier
+*/
+void clavier_down(unsigned char touche, int x, int y) {
+    (void)x; /*pour le warning de non use */
+    (void)y; /*pour le warning de non use */
+    touches[touche] = 1;
+}
+
+/*
+R: Permet de reset le tableau de touches actives
+E: la touche et les coordonnées de la souris
+S: rien
+A: Gaultier
+*/
+void clavier_up(unsigned char touche, int x, int y) {
+    (void)x; /*pour le warning de non use */
+    (void)y; /*pour le warning de non use */
+    touches[touche] = 0;
+}
+
+/*
 R: Permet de gerer toutes les touches du clavier
 E: la touche et les coordonnées de la souris
 S: rien
 A: Gaultier
 */
-void gerer_clavier(unsigned char touche, int x, int y){
-    int mod = glutGetModifiers(); /*récupère Ctrl, Shift, Alt*/
-    switch(touche){
-        case 'Z' :
-        case 'z' : avancer();break;
+void update() {
 
-        case 'Q' :
-        case 'q' : gauche();break;
+    if (touches['z'] || touches['Z'])
+        avancer();
 
-        case 'S' :
-        case 's' : reculer();break;
+    if (touches['s'] || touches['S'])
+        reculer();
 
-        case 'D' :
-        case 'd' : droite();break;
+    if (touches['q'] || touches['Q'])
+        gauche();
 
-        case ' ' : haut();break;
+    if (touches['d'] || touches['D'])
+        droite();
 
-        case 'C' :
-        case 'c' : bas();break;
-    }
+    if (touches[' '])
+        haut();
+
+    if (touches['c'] || touches['C'])
+        bas();
 }
 
 /*
@@ -103,6 +128,9 @@ E: la touche , l'etat et les coordonnées de la souris
 S: rien
 A: Gaultier
 */
-void gerer_souris(int bouton, int etat, int x, int y){}
+void gerer_souris(int bouton, int etat, int x, int y){
+    /*printf pour le warning de non use */
+    printf("Bouton: %d, Etat: %d, X: %d, Y: %d\n", bouton, etat, x, y);
+}
 
 #endif /*CONTROLE_C*/
