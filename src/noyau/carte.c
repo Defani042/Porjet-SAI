@@ -118,7 +118,6 @@ E: 1 TAD joueur et 3 double (les direction sur les axe X,Y et Z)
 S: vide
 A: Adrien
 */
-
 void deplacer_joueur(carte c, double dirx, double diry, double dirz)
 {
     double norme, nx, ny, nz;
@@ -156,6 +155,16 @@ void deplacer_joueur(carte c, double dirx, double diry, double dirz)
     c->j->pos->z += nz * c->j->vit;
     if (detecter_collision_joueur(c) != NULL)
         c->j->pos->z = old_z;
+}
+
+/*
+R: permet de vérifier si la partie est finie
+E: 1 TAD carte
+S: 0 si la partie est finie sinon 1
+A: Adrien
+*/
+int game_over(carte c){
+    return(c->j->vie == 0);
 }
 
 #endif /*_CARTE_C_*/

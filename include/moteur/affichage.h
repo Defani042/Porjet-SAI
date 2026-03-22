@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "noyau/objet.h"
+
 /*Variables globales*/
 extern int xO;
 extern int yO;

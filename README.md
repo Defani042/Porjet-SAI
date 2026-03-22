@@ -39,7 +39,8 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
 **Responsabilité : logique fondamentale du jeu**
 
 - **position** (`position.c / position.h`)  
-  Gère les coordonnées 3D pour les objets et le joueur.
+  - Gère les coordonnées 3D pour les objets et le joueur.
+  - Calcul des distance entre deux position
 
 - **objet** (`objet.c / objet.h`)  
   Gestion des objets 3D :  
@@ -50,10 +51,13 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
   - Affichage et calcul de la taille de la liste
 
 - **joueur** (`joueur.c / joueur.h`)  
-  Gère l'état du joueur et ses déplacements dans la carte.
+  - Gère l'état du joueur et ses déplacements dans la carte.
+  - Géstion des statistique du joueur
 
 - **carte** (`carte.c / carte.h`)  
   Représente la carte et la disposition des objets dans l’espace 3D.
+  - gestion des colision avec les obstacle 
+  - gestion des déplacement du joeur 
 
 - **aleatoire** (`aleatoire.c / aleatoire.h`)  
   Fournit des fonctions utilitaires pour générer des positions ou valeurs aléatoires.

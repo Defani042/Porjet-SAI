@@ -88,6 +88,76 @@ void animer(){
     }
 }
 
+
+/*
+R: permet d'aficher l'objet dans opengl
+E: 1 TAD objet
+S: rien
+A: Adrien
+*/
+void afficher_objet_couleur(objet o)
+{
+    float x1, y1, z1, x2, y2, z2;
+
+    /* sécurité */
+    if (o == NULL || o->pos == NULL)
+        return;
+
+    x1 = (float)o->pos->x;
+    y1 = (float)o->pos->y;
+    z1 = (float)o->pos->z;
+
+    x2 = x1 + (float)o->largeur;
+    y2 = y1 + (float)o->hauteur;
+    z2 = z1 + (float)o->longueur;
+
+    glBegin(GL_QUADS);
+
+    /* Face avant - rouge */
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex3f(x1, y1, z2);
+    glVertex3f(x2, y1, z2);
+    glVertex3f(x2, y2, z2);
+    glVertex3f(x1, y2, z2);
+
+    /* Face arrière - vert */
+    glColor3f(0.0f, 1.0f, 0.0f);
+    glVertex3f(x1, y1, z1);
+    glVertex3f(x2, y1, z1);
+    glVertex3f(x2, y2, z1);
+    glVertex3f(x1, y2, z1);
+
+    /* Face gauche - bleu */
+    glColor3f(0.0f, 0.0f, 1.0f);
+    glVertex3f(x1, y1, z1);
+    glVertex3f(x1, y1, z2);
+    glVertex3f(x1, y2, z2);
+    glVertex3f(x1, y2, z1);
+
+    /* Face droite - jaune */
+    glColor3f(1.0f, 1.0f, 0.0f);
+    glVertex3f(x2, y1, z1);
+    glVertex3f(x2, y1, z2);
+    glVertex3f(x2, y2, z2);
+    glVertex3f(x2, y2, z1);
+
+    /* Face bas - cyan */
+    glColor3f(0.0f, 1.0f, 1.0f);
+    glVertex3f(x1, y1, z1);
+    glVertex3f(x2, y1, z1);
+    glVertex3f(x2, y1, z2);
+    glVertex3f(x1, y1, z2);
+
+    /* Face haut - magenta */
+    glColor3f(1.0f, 0.0f, 1.0f);
+    glVertex3f(x1, y2, z1);
+    glVertex3f(x2, y2, z1);
+    glVertex3f(x2, y2, z2);
+    glVertex3f(x1, y2, z2);
+
+    glEnd();
+}
+
 /*
 R: permet d'afficher les images
 E: rien
