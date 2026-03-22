@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "noyau/objet.h"
+
 /*Variables globales*/
 extern int xO;
 extern int yO;
@@ -27,6 +29,8 @@ extern int f;
 void drawParallelepiped(float x, float y, float z, float dx, float dy, float dz);
 
 void animer();
+
+void afficher_objet_couleur(objet o);
 
 void affichage();
 
