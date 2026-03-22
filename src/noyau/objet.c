@@ -10,14 +10,16 @@ E: 1 TAD position
 S: 1 TAD objet
 A: Adrien
 */
-objet creer_objet(position pos,double c){
+objet creer_objet(position pos,double h,double l,double L){
     objet o = NULL;
     if ((o = (objet)malloc(sizeof(s_objet))) == NULL)
 	{
         fprintf(stderr,"Erreur malloc par la fonction creer_objet()\n");
         exit(EXIT_FAILURE);
     }
-    o->cote = c;
+    o->hauteur = h;
+    o->largeur = l;
+    o->longueur = L;
     o->pos = pos;
     o->next = NULL;
 
@@ -241,7 +243,9 @@ void afficher_objets(objet liste){
     {
         printf("/-ELEMENT %d-/",i);
         printf("POS(x = %f ,y= %f ,z= %f)\n",tmp->pos->x,tmp->pos->y,tmp->pos->z);
-        printf("coté : %f\n",tmp->cote);
+        printf("hauteur : %f\n",tmp->hauteur);
+        printf("longueur : %f\n",tmp->longueur);
+        printf("largeur : %f\n",tmp->largeur);
         i++;
         tmp = tmp->next;
     }

@@ -20,6 +20,7 @@ typedef struct s_joueur
     double vie_max;
     double vie; /*vie du joueur*/
     position pos; /*position du joueur dans l'espace*/
+    double hauteur, largeur, longueur; /*hitbox*/
     double atk; /*attaque*/
     double reg; /*régenération*/
     double jetpack; /*jet pack*/
@@ -35,8 +36,6 @@ typedef s_joueur * joueur;
 joueur creer_joueur(position pos);
 
 void liberer_joueur(joueur j);
-
-void deplacement(joueur j,double dirx,double diry,double dirz);
 
 void utiliser_jetpack(joueur j);
 

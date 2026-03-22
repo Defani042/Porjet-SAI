@@ -10,14 +10,14 @@
 typedef struct s_objet
 {
     position pos;
-    double cote;
+    double hauteur,largeur,longueur;
     struct s_objet * next;
 }s_objet;
 
 typedef s_objet * objet;
 
 
-objet creer_objet(position pos,double c);
+objet creer_objet(position pos,double h ,double l,double L);
 
 objet supprimer_objet(objet o,int i);
 

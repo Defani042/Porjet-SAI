@@ -8,6 +8,12 @@
 #define USE_JET_PACK .01
 
 
+/*definiation de la hitbox du joueur*/
+#define LONG 10
+#define LARG 10 
+#define HAUT 10
+
+
 /*CAPACITER DU JOUEUR*/
 #define CAP_DEF 0
 #define CAP_VIE 1 
