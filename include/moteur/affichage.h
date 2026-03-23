@@ -24,7 +24,7 @@ extern int top;
 extern int n;
 extern int f;
 
-void drawParallelepiped(float x, float y, float z, float dx, float dy, float dz);
+void Parallelepiped(float x, float y, float z, float dx, float dy, float dz);
 
 void animer();
 
