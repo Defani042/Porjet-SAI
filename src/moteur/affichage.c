@@ -156,6 +156,34 @@ void afficher_objet_couleur(objet o)
 }
 
 /*
+R: affiche tous les objets de la carte dans OpenGL
+E: carte c
+S: rien
+A: Adrien
+*/
+void afficher_carte(carte c) {
+    objet o;
+    joueur j;
+
+    /* sécurité : carte et joueur */
+    if (c == NULL)
+        return;
+    j = c->j;
+    if (j == NULL)
+        return;
+
+    /* parcours tous les objets */
+    o = c->liste_objets;
+    while (o != NULL) {
+        /* affiche seulement si visible par le joueur */
+        if (objet_visible(j, o)) {
+            afficher_objet_couleur(o);
+        }
+        o = o->next;
+    }
+}
+
+/*
 R: permet d'afficher les images
 E: rien
 S: rien

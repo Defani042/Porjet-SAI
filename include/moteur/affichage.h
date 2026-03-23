@@ -8,6 +8,7 @@
 #include <math.h>
 
 #include "noyau/objet.h"
+#include "noyau/carte_globale.h"
 
 /*Variables globales*/
 extern int xO;
@@ -33,5 +34,7 @@ void animer();
 void afficher_objet_couleur(objet o);
 
 void affichage();
+
+void afficher_carte(carte c);
 
 #endif /*AFFICHAGE_H*/
