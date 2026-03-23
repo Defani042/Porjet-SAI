@@ -5,15 +5,28 @@
 #include "moteur/affichage.h"
 #include "moteur/controle.h"
 
+/*log*/
+#include "log/log.h"
+
 /*noyau du jeu*/
 #include "noyau/generateur_carte.h"
+#include "noyau/carte_globale.h"
 
 int main(int argc, char *argv[]){
-    carte c;
+    int res;
+    /*creation du fichier de log*/
+    creer_dossiers_log();
+    res = creer_fichier_log();
+    if(res == 0){
+        fprintf(stderr,"ERREUR: le fichier de log n'a pas put se créer\n");
+        exit(EXIT_FAILURE);
+    }
+    printf("Log OK");
+
     printf("Debut du jeux\n");
-    c = creer_carte_test();
+    carte_jeu = creer_carte_test();
     printf("Carte test créer\n");
-    if(c == NULL){
+    if(carte_jeu == NULL){
         printf("ERREUR la carte est NULL\n");
         exit(EXIT_FAILURE);
     }

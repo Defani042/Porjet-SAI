@@ -23,6 +23,10 @@
 #define CAP_VIT 5
 
 
+/*LOG*/
+#define LOG_FILE_PATH "fich/log/log.txt"
+
+
 
 
 #endif /*_CONFIG_H_*/

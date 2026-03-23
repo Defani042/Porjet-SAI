@@ -15,6 +15,8 @@ Projet-SAI/
 │  └─ 📁 noyau/
 ├─ 📁 build/
 ├─ 📁 game/
+├─ 📁 fich/
+│  └─ 📁 log/
 ├─ 📄 Makefile
 └─ 📄 README.md
 ```
@@ -27,6 +29,8 @@ Projet-SAI/
 - **game/** → Données et ressources du jeu  
 - **Makefile** → Compilation du projet  
 - **README.md** → Documentation du projet
+- **fich/** → contient tous les fichier géner/utilisé par le jeu
+
 
 ## Description des modules
 
@@ -102,6 +106,13 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
 
 ---
 
+### 5 Module `log`
+
+**Responsabilité : gestion des logs du jeu**
+
+- **log** (`log.c / log.h`) 
+  Contient les fonctions pour créer des journeaux de log
+
 ###  Résumé
 
 | Module     | Responsabilité principale |
@@ -110,3 +121,4 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
 | `moteur`   | Rendu OpenGL, gestion des entrées et debug visuel |
 | `config`   | Paramètres globaux du jeu |
 | `main`     | Boucle principale et orchestration des modules |
+| `log`      | Gestion des journeaux de log |
