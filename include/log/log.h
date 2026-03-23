@@ -12,5 +12,7 @@ void creer_dossiers_log();
 
 int creer_fichier_log();
 
+void log_init();
+
 
 #endif /*_LOG_H_*/
