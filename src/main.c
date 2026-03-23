@@ -5,19 +5,22 @@
 #include "moteur/affichage.h"
 #include "moteur/controle.h"
 
+/*log*/
+#include "log/log.h"
+
 /*noyau du jeu*/
 #include "noyau/generateur_carte.h"
+#include "noyau/carte_globale.h"
 
 int main(int argc, char *argv[]){
-    carte c;
-    printf("Debut du jeux\n");
-    c = creer_carte_test();
-    printf("Carte test créer\n");
-    if(c == NULL){
-        printf("ERREUR la carte est NULL\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Carte test OK\n");
+    /*creation du fichier de log*/
+    log_init();
+    log_nettoyer();
+    log_message(INIT SUCC "les fichiers de log ont été créés");
+    log_message(INIT SUCC "Début du jeu");
+    /*initialisation de la map*/
+    carte_jeu = creer_carte_test();
+    log_message(INIT SUCC "la carte a été créé");
 
     glutInit(&argc, argv);                
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
