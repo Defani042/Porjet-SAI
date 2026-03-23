@@ -39,7 +39,6 @@ int main(int argc, char *argv[]){
     glutKeyboardUpFunc(touche_relachee);
     glutPassiveMotionFunc(mouvement_souris);
     glutMotionFunc(mouvement_souris);
-    glutMainLoop();
     glutMainLoop();/*boucle principale*/
 
     /*fermeuture de la carte*/
