@@ -34,3 +34,7 @@ clean:
 re: clean all
 
 .PHONY: all clean re
+
+# ===== RUN =====
+run: all
+	./$(EXEC)

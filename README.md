@@ -146,3 +146,40 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
 | `config`   | Paramètres globaux du jeu |
 | `main`     | Boucle principale et orchestration des modules |
 | `log`      | Gestion des journeaux de log |
+
+## Utilisation du Makefile
+
+Ce projet utilise un **Makefile** pour compiler et exécuter le jeu facilement.
+
+### Commandes principales
+
+- **Compiler le projet** : 
+```bash
+make
+```
+
+ou 
+
+```bash
+make all
+```
+Compile tous les fichiers sources et crée l’exécutable game.  
+
+- **Compile et lancer l’exécutable game** :
+
+```bash
+make run
+```
+Compile si nécessaire puis exécute directement le jeu.  
+- **Supprimer les fichiers compilés et l’exécutable** :
+
+```bash
+make clean
+```
+Supprime le dossier build/ et l’exécutable game.  
+
+- **Recompiler complètement le projet** :
+```bash
+make re
+```
+Supprime les fichiers compilés et recompile tout depuis zéro.  
