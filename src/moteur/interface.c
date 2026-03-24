@@ -100,6 +100,23 @@ void afficher_fps()
     sprintf(buffer, "FPS: %.2f", fps);
     draw_text(largeur_ecran -100,20, buffer); /*coin en haut à droite*/
 }
+
+/*
+R: permet d'afficher la position du joueur dans l'espace
+E: vide
+S: rien
+A: Adrien
+*/
+void afficher_pos(){
+    char buffpos[64];
+    float x = 20;            
+    float y = 100;
+    joueur j = carte_jeu->j;
+    /*desin de la position*/
+    draw_text(x +20, y, "Position:");
+    sprintf(buffpos, "x:%d y:%d z:%d", (int)j->pos->x,(int)j->pos->y,(int)j->pos->z);
+    draw_text(x,y+30, buffpos);
+}
 /*
 R: permet d'afficher l'interface
 E: vide
@@ -109,6 +126,7 @@ A: Adrien
 void afficher_interface(){
     afficher_vie();
     afficher_jet();
+    afficher_pos();
     maj_fps();
     afficher_fps();
 }
