@@ -92,12 +92,12 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
   - Rendu OpenGL en 2D de la barre du jetpack
   - Rendu OpenGL en 2D du compteur de FPS (éstimation)
 
-  - **composant2d** (`composant2d.c / composant2d.h`)    
+- **composant2d** (`composant2d.c / composant2d.h`)    
   Gestion de l'affichage des composant en 2D 
   - affichage d'un rectangle
   - affichage de texte 
 
-  - **composant2d** (`composant3d.c / composant3d.h`)     
+- **composant2d** (`composant3d.c / composant3d.h`)     
   Gestion de l'affichage des composant en 3D  
   - affichage d'un parralépipède
   - affichage d'un objet en 3d
