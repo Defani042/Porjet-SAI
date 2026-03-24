@@ -15,6 +15,7 @@ void Parallelepiped(float x, float y, float z, float dx, float dy, float dz) {
     float hy = dy / 2.0f;
     float hz = dz / 2.0f;
     
+    glBegin(GL_QUADS);
     /*Face avant (z +)*/
     glVertex3f(x - hx, y - hy, z + hz);
     glVertex3f(x + hx, y - hy, z + hz);
@@ -50,6 +51,7 @@ void Parallelepiped(float x, float y, float z, float dx, float dy, float dz) {
     glVertex3f(x + hx, y - hy, z - hz);
     glVertex3f(x + hx, y - hy, z + hz);
     glVertex3f(x - hx, y - hy, z + hz);
+    glEnd();
 }
 
 /*

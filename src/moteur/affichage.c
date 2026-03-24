@@ -98,16 +98,11 @@ void affichage(){
     glLoadIdentity();
     gluLookAt(eyeX,eyeY,eyeZ,eyeX + directionX,eyeY + directionY,eyeZ + directionZ,upX,upY,upZ);
 
-    /*Definition des points*/
-    glBegin(GL_QUADS); /*GL_POINTS affiche des points et GL_QUADS affiche des rectangles*/
-
-    /*Zone d'affichage*/
     /*Parallelepiped(-40,-40,-5,40,40,5);*/
     afficher3d();
 
     /*printf("ex,ey,ez,xO,y0,z0 : %d,%d,%d,%d,%d,%d\n", eyeX,eyeY,eyeZ,xO,yO,zO);*/
 
-    glEnd();
     /* ===================== */
     /*       UI 2D           */
     /* ===================== */
