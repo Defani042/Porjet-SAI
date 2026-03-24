@@ -8,8 +8,10 @@
 
 #include "moteur/affichage.h"
 
+extern float positionX;
+extern float positionY;
 extern float directionX;
-extern float directionY; 
+extern float directionY;
 extern float directionZ;
 
 void avancer();

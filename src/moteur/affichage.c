@@ -8,9 +8,9 @@
 int xO = -71;
 int yO = -41;
 int zO = 2;
-int eyeX = 0;
-int eyeY = 0;
-int eyeZ = 0;
+float eyeX = 0;
+float eyeY = 0;
+float eyeZ = 0;
 int upX = 0;
 int upY = 0;
 int upZ = 1;
@@ -20,6 +20,33 @@ int b = -9;
 int top = 9;
 int n = 5;
 int f = 1000;
+int largeur_ecran;
+int hauteur_ecran;
+
+/*
+R: permet d'initialiser tous les paramètre GLUT
+E: rien
+S: rien
+A: Gaultier
+*/
+void initialisation(){
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+    glutInitWindowPosition(50, 50);  
+    glutCreateWindow("Projet SAI");
+    glutFullScreen();
+    glEnable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glutDisplayFunc(affichage);   
+    glutIdleFunc(animer);
+    glutKeyboardFunc(touche_pressee);
+    largeur_ecran = glutGet(GLUT_SCREEN_WIDTH);
+    hauteur_ecran = glutGet(GLUT_SCREEN_HEIGHT);
+    glutSetCursor(GLUT_CURSOR_NONE);
+    glutKeyboardUpFunc(touche_relachee);
+    glutWarpPointer(largeur_ecran/2, hauteur_ecran/2);
+    glutPassiveMotionFunc(mouvement_souris);
+    glutMotionFunc(mouvement_souris);
+}
 
 /*
 R: permet de dessiner un parallepipede

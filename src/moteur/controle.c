@@ -9,9 +9,17 @@ int derX = 0, derY = 0;
 float camX = -90.0f;
 float camY = 0.0f;
 
-float directionX = 0.0f;
-float directionY = 0.0f;
-float directionZ = -1.0f;
+/*vecteur de direction*/
+float directionX;
+float directionY;
+float directionZ;
+
+/*position pour le deplacement*/
+float positionX = 0.0f;
+float positionY = 0.0f;
+
+/*direction ou le joueur regarde*/
+float angle_direction;
 
 /*
 R: Permet d'avancer
@@ -34,6 +42,9 @@ void avancer() {
     eyeY = (int)j->pos->y;
     eyeZ = (int)j->pos->z;
     xO--;
+    eyeX += cos(angle_direction);
+    eyeY += sin(angle_direction);
+
 }
 
 /*
@@ -43,6 +54,7 @@ S: rien
 A: Gaultier
 */
 void gauche(){
+
     joueur j = carte_jeu->j;
     if (carte_jeu == NULL || carte_jeu->j == NULL){
         log_message(MOTEUR WARN "Joueur NULL! fonction gauche()");
@@ -57,6 +69,8 @@ void gauche(){
     eyeY = (int)j->pos->y;
     eyeZ = (int)j->pos->z;
     yO--;
+    eyeX -= sin(angle_direction);
+    eyeY += cos(angle_direction);
 }
 
 /*
@@ -80,6 +94,10 @@ void reculer(){
     eyeY = (int)j->pos->y;
     eyeZ = (int)j->pos->z;
     xO++;
+
+    eyeX -= cos(angle_direction);
+    eyeY -= sin(angle_direction);
+
 }
 
 /*
@@ -102,6 +120,8 @@ void droite(){
     eyeY = (int)j->pos->y;
     eyeZ = (int)j->pos->z;
     yO++;
+    eyeX += sin(angle_direction);
+    eyeY -= cos(angle_direction);
 }
 
 /*
@@ -217,29 +237,33 @@ S: rien
 A: Gaultier
 */
 void mouvement_souris(int x, int y){
-    int dx = x - derX;
+    int dx = x - derX; /*distance de deplacement de la souris*/
     int dy = y - derY;
-    float rad_camX;
     float rad_camY;
 
     derX = x;
     derY = y;
 
-    if((dx < 10 && dx > -10) || (dy < 10 && dy > -10)){
+    /*if pour les deplacement trop grand (comme le reset de la souris)*/
+    if((dx < 10 && dx > -10) && (dy < 10 && dy > -10)){
 
         camX -= dx;
         camY -= dy;
 
-        if (camY > 89.0f) camY = 89.0f;
-        if (camY < -89.0f) camY = -89.0f;
+        if (camY > 89.0f) camY = 89.0f;     /*pour ne pas tourner à 360 degres*/
+        if (camY < -89.0f) camY = -89.0f;   /*à la vertical*/
 
-        rad_camY = camY * M_PI / 180.0f;
-        rad_camX = camX * M_PI / 180.0f;
+        rad_camY = camY * M_PI / 180.0f;        /*calcul des direction*/
+        angle_direction = camX * M_PI / 180.0f; 
 
-        directionX = cos(rad_camY) * cos(rad_camX);
-        directionY = cos(rad_camY) * sin(rad_camX);
+        directionX = cos(rad_camY) * cos(angle_direction); /*application des */
+        directionY = cos(rad_camY) * sin(angle_direction); /*direction aux vecteur*/
         directionZ = sin(rad_camY);
 
+    }
+    /*si la souris touche les bors de l'ecran, elle reviens au centre*/
+    if(x == 0 || y == 0 || x == largeur_ecran -1 || y == hauteur_ecran - 1){
+        glutWarpPointer(largeur_ecran/2, hauteur_ecran/2);
     }
     
 }
