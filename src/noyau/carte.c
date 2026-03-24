@@ -122,43 +122,33 @@ E: 1 TAD joueur et 3 double (les direction sur les axe X,Y et Z)
 S: vide
 A: Adrien
 */
-void deplacer_joueur(carte c, double dirx, double diry, double dirz)
+void deplacer_joueur(carte c, double dx, double dy, double dz)
 {
-    double norme, nx, ny, nz;
+    joueur j;
     double old_x, old_y, old_z;
+    double pas;
 
-    if (c == NULL || c->j == NULL || c->j->pos == NULL)
+    if (!c || !c->j || !c->j->pos)
         return;
 
-    /* calcul de la norme */
-    norme = sqrt(dirx*dirx + diry*diry + dirz*dirz);
+    j = c->j;
 
-    /* pas de déplacement */
-    if (norme == 0)
-        return;
+    /* Déplacement par frame */
+    pas = 1.0 * j->vit; /*calul du pas*/
 
-    /* normalisation */
-    nx = dirx / norme;
-    ny = diry / norme;
-    nz = dirz / norme;
+    old_x = j->pos->x;
+    old_y = j->pos->y;
+    old_z = j->pos->z;
 
-    /* sauvegarde ancienne position */
-    old_x = c->j->pos->x;
-    old_y = c->j->pos->y;
-    old_z = c->j->pos->z;
-
-    /* déplacement axe par axe */
-    c->j->pos->x += nx * c->j->vit;
-    if (detecter_collision_joueur(c) != NULL)
-        c->j->pos->x = old_x;
-
-    c->j->pos->y += ny * c->j->vit;
-    if (detecter_collision_joueur(c) != NULL)
-        c->j->pos->y = old_y;
-
-    c->j->pos->z += nz * c->j->vit;
-    if (detecter_collision_joueur(c) != NULL)
-        c->j->pos->z = old_z;
+    j->pos->x += dx * pas;
+    if (detecter_collision_joueur(c))
+        j->pos->x = old_x;
+    j->pos->y += dy * pas;
+    if (detecter_collision_joueur(c))
+        j->pos->y = old_y;
+    j->pos->z += dz * pas;
+    if (detecter_collision_joueur(c))
+        j->pos->z = old_z;
 }
 
 /*
@@ -203,7 +193,7 @@ int objet_visible(joueur j, objet o)
 
                 dist2 = dx*dx + dy*dy + dz*dz;
                 if (dist2 <= DIST_REND*DIST_REND) {
-                    dot = dx*j->dirx + dy*j->diry + dz*j->dirz;
+                    dot = dx*j->dir->x + dy*j->dir->y + dz*j->dir->z;
                     if (dot > 0)
                         return 1;  /* au moins un coin visible */
                 }

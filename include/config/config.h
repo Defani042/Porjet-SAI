@@ -11,9 +11,9 @@
 #define DIST_REND 1000.0
 
 /*definiation de la hitbox du joueur*/
-#define LONG 10
-#define LARG 10 
-#define HAUT 10
+#define LONG 1
+#define LARG 1
+#define HAUT 1
 
 
 /*CAPACITER DU JOUEUR*/

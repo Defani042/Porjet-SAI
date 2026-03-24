@@ -2,15 +2,15 @@
 #define AFFICHAGE_C
 
 #include "moteur/controle.h"
-#include <time.h>
+
 
 /*variables globales*/
 int xO = -71;
 int yO = -41;
 int zO = 2;
-int eyeX = -11;
-int eyeY = -41;
-int eyeZ = 2;
+int eyeX = 0;
+int eyeY = 0;
+int eyeZ = 0;
 int upX = 0;
 int upY = 0;
 int upZ = 1;
@@ -82,6 +82,7 @@ void animer(){
         last_time = current_time;
         raffraichir();
         glutPostRedisplay();
+        usleep(2000);
     }
 }
 
@@ -190,6 +191,12 @@ S: rien
 A: Gaultier
 */
 void affichage(){
+
+    clock_t debut, fin;
+    double temps;
+    char buffer[64];
+
+    debut = clock();
     /*debut*/
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -207,7 +214,8 @@ void affichage(){
     glBegin(GL_QUADS); /*GL_POINTS affiche des points et GL_QUADS affiche des rectangles*/
 
     /*Zone d'affichage*/
-    Parallelepiped(-40,-40,-5,40,40,5);
+    /*Parallelepiped(-40,-40,-5,40,40,5);*/
+    afficher_carte(carte_jeu);
 
     /*printf("ex,ey,ez,xO,y0,z0 : %d,%d,%d,%d,%d,%d\n", eyeX,eyeY,eyeZ,xO,yO,zO);*/
 
@@ -215,6 +223,10 @@ void affichage(){
 
     /*Fin*/
     glutSwapBuffers();
-}
 
+    fin = clock();
+    temps = (double)(fin - debut) / CLOCKS_PER_SEC;
+    sprintf(buffer, "%s%s frame calculé en %f sec", MOTEUR, SUCC, temps);
+    log_message(buffer);
+}
 #endif /*AFFICHAGE_C*/

@@ -19,8 +19,20 @@ E: rien
 S: rien 
 A: Gaultier
 */
-void avancer(){
-    eyeX--;
+void avancer() {
+
+    joueur j = carte_jeu->j;
+    if (carte_jeu == NULL || carte_jeu->j == NULL){
+        log_message(MOTEUR WARN "Joueur NULL! fonction avancer()");
+        return;
+    }
+        
+    deplacer_joueur(carte_jeu, -1.0, 0.0, 0.0);
+
+    /*Mise à jour de la caméra pour OpenGL*/ 
+    eyeX = (int)j->pos->x;
+    eyeY = (int)j->pos->y;
+    eyeZ = (int)j->pos->z;
     xO--;
 }
 
@@ -31,7 +43,19 @@ S: rien
 A: Gaultier
 */
 void gauche(){
-    eyeY--;
+    joueur j = carte_jeu->j;
+    if (carte_jeu == NULL || carte_jeu->j == NULL){
+        log_message(MOTEUR WARN "Joueur NULL! fonction gauche()");
+        return;
+    }
+    
+
+    deplacer_joueur(carte_jeu, 0.0, -1.0, 0.0);
+
+    /*Mise à jour de la caméra pour OpenGL*/ 
+    eyeX = (int)j->pos->x;
+    eyeY = (int)j->pos->y;
+    eyeZ = (int)j->pos->z;
     yO--;
 }
 
@@ -42,7 +66,19 @@ S: rien
 A: Gaultier
 */
 void reculer(){
-    eyeX++;
+    joueur j = carte_jeu->j;
+    if (carte_jeu == NULL || carte_jeu->j == NULL){
+        log_message(MOTEUR WARN "Joueur NULL! fonction reculer()");
+        return;
+    }
+    
+
+    deplacer_joueur(carte_jeu, 1.0, 0.0, 0.0);
+
+    /*Mise à jour de la caméra pour OpenGL*/ 
+    eyeX = (int)j->pos->x;
+    eyeY = (int)j->pos->y;
+    eyeZ = (int)j->pos->z;
     xO++;
 }
 
@@ -53,7 +89,18 @@ S: rien
 A: Gaultier
 */
 void droite(){
-    eyeY++;
+    joueur j = carte_jeu->j;
+    if (carte_jeu == NULL || carte_jeu->j == NULL){
+        log_message(MOTEUR WARN "Joueur NULL! fonction droite()");
+        return;
+    }
+
+    deplacer_joueur(carte_jeu, 0.0, 1.0, 0.0);
+
+    /*Mise à jour de la caméra pour OpenGL*/ 
+    eyeX = (int)j->pos->x;
+    eyeY = (int)j->pos->y;
+    eyeZ = (int)j->pos->z;
     yO++;
 }
 
@@ -64,7 +111,18 @@ S: rien
 A: Gaultier
 */
 void haut(){
-    eyeZ++;
+    joueur j = carte_jeu->j;
+    if (carte_jeu == NULL || carte_jeu->j == NULL){
+        log_message(MOTEUR WARN "Joueur NULL! fonction haut()");
+        return;
+    }
+
+    deplacer_joueur(carte_jeu, 0.0, 0.0, 1.0);
+
+    /*Mise à jour de la caméra pour OpenGL*/ 
+    eyeX = (int)j->pos->x;
+    eyeY = (int)j->pos->y;
+    eyeZ = (int)j->pos->z;
     zO++;
 }
 
@@ -75,7 +133,18 @@ S: rien
 A: Gaultier
 */
 void bas(){
-    eyeZ--;
+    joueur j = carte_jeu->j;
+    if (carte_jeu == NULL || carte_jeu->j == NULL){
+        log_message(MOTEUR WARN "Joueur NULL! fonction bas()");
+        return;
+    }
+    
+    deplacer_joueur(carte_jeu, 0.0, 0.0, -1.0);
+
+    /*Mise à jour de la caméra pour OpenGL*/ 
+    eyeX = (int)j->pos->x;
+    eyeY = (int)j->pos->y;
+    eyeZ = (int)j->pos->z;
     zO--;
 }
 

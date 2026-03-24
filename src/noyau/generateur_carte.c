@@ -13,7 +13,7 @@ carte creer_carte_test()
     c = creer_carte_vide();
 
     /* Initialise le joueur à l'origine avec la macro */
-    pos_joueur = SET_UP_ORIGINE_POS;
+    pos_joueur = creer_position(-5,-5,0);
     c->j = creer_joueur(pos_joueur);
 
     /* Crée le sol */

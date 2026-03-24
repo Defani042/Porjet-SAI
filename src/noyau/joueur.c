@@ -18,9 +18,7 @@ joueur creer_joueur(position pos) {
         log_message(NOYAU ERR "Erreur malloc par la fonction creer_joueur()");
         exit(EXIT_FAILURE);
     }
-    j->dirx = 0.0;
-    j->diry = 0.0;
-    j->dirz = 1.0;
+    j->dir = creer_position(1,0,0);
     j->atk = ATK;
     j->jetpack = JET;
     j->niv = 0;
