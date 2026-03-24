@@ -14,9 +14,9 @@
 extern int xO;
 extern int yO;
 extern int zO;
-extern int eyeX;
-extern int eyeY;
-extern int eyeZ;
+extern float eyeX;
+extern float eyeY;
+extern float eyeZ;
 extern int upX;
 extern int upY;
 extern int upZ;
@@ -26,6 +26,10 @@ extern int b;
 extern int top;
 extern int n;
 extern int f;
+extern int largeur_ecran;
+extern int hauteur_ecran;
+
+void initialisation();
 
 void Parallelepiped(float x, float y, float z, float dx, float dy, float dz);
 
