@@ -183,3 +183,10 @@ Supprime le dossier build/ et l’exécutable game.
 make re
 ```
 Supprime les fichiers compilés et recompile tout depuis zéro.  
+
+- **Compiler et générer les fichier d'assemblage** :  
+
+```bash
+make re
+```
+Compile les fichiers source et génère le code en asembleur.

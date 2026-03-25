@@ -5,6 +5,7 @@ LDFLAGS = -lGL -lGLU -lglut -lm
 
 SRC_DIR = src
 BUILD_DIR = build
+ASM_DIR = asm
 EXEC = game
 
 # ===== SOURCES =====
@@ -29,7 +30,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 
 # Clean
 clean:
-	rm -rf $(BUILD_DIR) $(EXEC)
+	rm -rf $(BUILD_DIR) $(EXEC) $(ASM_DIR)
 
 re: clean all
 
@@ -38,3 +39,10 @@ re: clean all
 # ===== RUN =====
 run: all
 	./$(EXEC)
+
+# ==== ASM ====
+asm:
+	@mkdir -p $(ASM_DIR)
+	@for file in $(SRC_FILES); do \
+		$(CC) $(CFLAGS) -S $$file -o $(ASM_DIR)/$$(basename $$file .c).s; \
+	done
