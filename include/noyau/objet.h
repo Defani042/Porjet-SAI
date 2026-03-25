@@ -9,8 +9,10 @@
 
 typedef struct s_objet
 {
+    position rot; /*indique les angles de rotation de l'objet*/
     position pos;
     double hauteur,largeur,longueur;
+    
     struct s_objet * next;
 }s_objet;
 

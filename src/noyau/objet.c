@@ -18,6 +18,7 @@ objet creer_objet(position pos,double h,double l,double L){
         log_message(NOYAU ERR "Erreur malloc par la fonction creer_objet()");
         exit(EXIT_FAILURE);
     }
+    o->rot = SET_UP_ORIGINE_POS; /*on set les angle en 0 0 0*/
     o->hauteur = h;
     o->largeur = l;
     o->longueur = L;
