@@ -128,6 +128,8 @@ void affichage(){
 
     /*Fin*/
     glutSwapBuffers();
+    /*application de la graviter*/
+    bas();
 
     /* Mesure du temps */
     /*fin = clock();

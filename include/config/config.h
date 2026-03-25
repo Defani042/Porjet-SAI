@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 #define SET_UP_ORIGINE_POS creer_position(0,0,0)
-#define USE_JET_PACK .01
+#define USE_JET_PACK .1
 
 /*affichage*/
 #define DIST_REND 1000.0

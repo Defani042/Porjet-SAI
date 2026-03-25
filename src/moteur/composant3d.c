@@ -174,6 +174,7 @@ A: Adrien
 */
 void afficher3d(){
     afficher_carte(carte_jeu);
+    
 }
 
 #endif /*_COMPOSANT3D_C_*/

@@ -136,8 +136,10 @@ void haut(){
         log_message(MOTEUR WARN "Joueur NULL! fonction haut()");
         return;
     }
-
-    deplacer_joueur(carte_jeu, 0.0, 0.0, 1.0);
+    if(j->jetpack>0){
+        deplacer_joueur(carte_jeu, 0.0, 0.0, 2.0);
+        utiliser_jetpack(j);
+    }
 
     /*Mise à jour de la caméra pour OpenGL*/ 
     eyeX = (int)j->pos->x;
