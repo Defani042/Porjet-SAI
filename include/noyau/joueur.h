@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
+
+extern clock_t dernier_temps_jetpack;
 
 
 #include "config/config.h"
@@ -23,7 +26,8 @@ typedef struct s_joueur
     position dir; /*position ou regarde le joueur */
     double hauteur, largeur, longueur; /*hitbox*/
     double atk; /*attaque*/
-    double reg; /*régenération*/
+    double reg_vie; /*régenération vie */
+    double reg_jetpack; /*régenération jetpack */
     double jetpack; /*jet pack*/
     double jetpack_max; /*jet pack*/
     int niv;
@@ -48,5 +52,7 @@ void amelirorer_stat(joueur j,int stat,double val);
 void niveau_suivant(joueur j);
 
 void reapparition(joueur j);
+
+void regenerer_jetpack(joueur j);
 
 #endif /*_JOUEUR_H_*/

@@ -10,6 +10,9 @@
 /*affichage*/
 #define DIST_REND 1000.0
 
+/*COULDOWN DE  REGENERATION*/
+#define DURRER_JET 3
+
 /*definiation de la hitbox du joueur*/
 #define LONG 1
 #define LARG 1

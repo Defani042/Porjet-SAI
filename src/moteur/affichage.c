@@ -130,6 +130,7 @@ void affichage(){
     glutSwapBuffers();
     /*application de la graviter*/
     bas();
+    regenerer_jetpack(carte_jeu->j);
 
     /* Mesure du temps */
     /*fin = clock();

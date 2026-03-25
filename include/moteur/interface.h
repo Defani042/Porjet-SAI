@@ -30,7 +30,4 @@ void afficher_nb_obj();
 
 void afficher_interface();
 
-
-
-
 #endif /*_INTERFACE_H_*/
