@@ -14,9 +14,6 @@
 #include "moteur/composant3d.h"
 
 /*Variables globales*/
-extern int xO;
-extern int yO;
-extern int zO;
 extern float eyeX;
 extern float eyeY;
 extern float eyeZ;

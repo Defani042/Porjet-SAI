@@ -162,7 +162,17 @@ void deplacer_joueur(carte c, double dx, double dy, double dz)
     move_y += right_y * dy;
 
     /* Vertical (dz) */
-    move_z = dz;
+    move_z = j->dir->z * dx;
+    move_z += dz;
+
+    if(move_z > 0.45 && j->jetpack>0){
+        utiliser_jetpack(j);
+    }
+    else{
+        if(move_z >0){
+            move_z = 0;
+        }
+    }
 
     /* Application avec collisions */
     j->pos->x += move_x * pas;

@@ -5,9 +5,6 @@
 
 
 /*variables globales*/
-int xO = -71;
-int yO = -41;
-int zO = 2;
 float eyeX = 0;
 float eyeY = 0;
 float eyeZ = 0;
