@@ -118,12 +118,11 @@ void affichage(){
 
     /* Dessin UI */
     afficher_interface();
-
+    
    
     glEnable(GL_DEPTH_TEST); 
 
-    /* Affichage */
-    glutSwapBuffers();
+
 
 
     /*Fin*/
