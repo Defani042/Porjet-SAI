@@ -95,6 +95,7 @@ void log_close()
 {
     if (log_file)
     {
+        log_message(LOG SUCC "fermeuture des logs !");
         fclose(log_file);
         log_file = NULL;
     }
