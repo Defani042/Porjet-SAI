@@ -57,6 +57,9 @@ carte creer_carte_test()
 carte creer_carte_jeu(){
     carte c;
     objet sol,mur,mur1,mur2,mur3,plafond;
+
+    objet arrete1,arrete2,arrete3,arrete4,arrete5,arrete6,arrete7,arrete8;
+
     position pos_joueur;
 
     /* Crée une carte vide */
@@ -70,20 +73,44 @@ carte creer_carte_jeu(){
     sol = creer_objet(creer_position(-250,-250,-2),500,500,2);
     couleur_objet(sol, 0.0f, 0.9f, 0.0f);
 
-    mur = creer_objet(creer_position(-250.0, -250, -2), 500, 2, 500);
+    mur = creer_objet(creer_position(-250, -250, -2), 500, 2, 500);
     couleur_objet(mur, 0.0f, 0.0f, 0.9f);
 
-    mur1 = creer_objet(creer_position(250.0, -250, -2), 500, 2, 500);
+    mur1 = creer_objet(creer_position(250, -250, -2), 500, 2, 500);
     couleur_objet(mur1, 0.0f, 0.0f, 0.9f);
 
-    mur2 = creer_objet(creer_position(-250.0, 250, -2), 2, 500, 500);
+    mur2 = creer_objet(creer_position(-250, 250, -2), 2, 500, 500);
     couleur_objet(mur2, 0.0f, 0.0f, 0.9f);
 
-    mur3 = creer_objet(creer_position(-250.0, -250, -2), 2, 500, 500);
+    mur3 = creer_objet(creer_position(-250, -250, -2), 2, 500, 500);
     couleur_objet(mur3, 0.0f, 0.0f, 0.9f);
 
-    plafond = creer_objet(creer_position(-250,-250,198),500,500,2);
+    plafond = creer_objet(creer_position(-250,-250,498),500,500,2);
     couleur_objet(plafond, 0.0f, 0.0f, 0.9f);
+
+    arrete1 = creer_objet(creer_position(-248, -248, -2), 1.0, 1.0,500.0);
+    couleur_objet(arrete1, 0.0f, 0.0f, 0.0f);
+
+    arrete2 = creer_objet(creer_position(248, -248, -2), 1.0, 1.0, 500.0);
+    couleur_objet(arrete2, 0.0f, 0.0f, 0.0f);
+
+    arrete3 = creer_objet(creer_position(-248, 248, -2), 1.0, 1.0, 500.0);
+    couleur_objet(arrete3, 0.0f, 0.0f, 0.0f);
+
+    arrete4 = creer_objet(creer_position(248, 248, -2), 1.0, 1.0, 500.0);
+    couleur_objet(arrete4, 0.0f, 0.0f, 0.0f);
+
+    arrete5 = creer_objet(creer_position(-248, -248, 498), 500.0, 1.0, 1.0);
+    couleur_objet(arrete5, 0.0f, 0.0f, 0.0f);
+
+    arrete6 = creer_objet(creer_position(-248, -248, 498), 1.0, 500.0, 1.0);
+    couleur_objet(arrete6, 0.0f, 0.0f, 0.0f);
+
+    arrete7 = creer_objet(creer_position(248, 248, 498), -500.0, 1.0, 1.0);
+    couleur_objet(arrete7, 0.0f, 0.0f, 0.0f);
+
+    arrete8 = creer_objet(creer_position(248, 248, 498), 1.0, -500.0, 1.0);
+    couleur_objet(arrete8, 0.0f, 0.0f, 0.0f);
 
 
     c->liste_objets = ajouter_fin(c->liste_objets,sol);
@@ -92,6 +119,15 @@ carte creer_carte_jeu(){
     c->liste_objets = ajouter_fin(c->liste_objets, mur1);
     c->liste_objets = ajouter_fin(c->liste_objets, mur2);
     c->liste_objets = ajouter_fin(c->liste_objets, mur3);
+
+    c->liste_objets = ajouter_fin(c->liste_objets, arrete1);
+    c->liste_objets = ajouter_fin(c->liste_objets, arrete2);
+    c->liste_objets = ajouter_fin(c->liste_objets, arrete3);
+    c->liste_objets = ajouter_fin(c->liste_objets, arrete4);
+    c->liste_objets = ajouter_fin(c->liste_objets, arrete5);
+    c->liste_objets = ajouter_fin(c->liste_objets, arrete6);
+    c->liste_objets = ajouter_fin(c->liste_objets, arrete7);
+    c->liste_objets = ajouter_fin(c->liste_objets, arrete8);
 
     return c;
 }
