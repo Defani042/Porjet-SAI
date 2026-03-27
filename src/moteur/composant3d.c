@@ -203,7 +203,7 @@ A: Adrien
 void afficher3d(){
     position pos = carte_jeu->j->pos;
     afficher_carte(carte_jeu);
-    /*afficher_cercle3D(pos,3.0);*/
+    afficher_cercle3D(pos,3.0);
     
 }
 

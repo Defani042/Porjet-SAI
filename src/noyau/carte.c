@@ -74,13 +74,24 @@ int collision_hitbox(
     double x2, double y2, double z2,
     double w2, double h2, double l2)
 {
+    double x1_min = x1 - w1/2;
+    double x1_max = x1 + w1/2;
+    double z1_min = z1 - l1/2;
+    double z1_max = z1 + l1/2;
+    double y1_min = y1 - h1/2;
+    double y1_max = y1 + h1/2;
+
+    double x2_min = x2 ;
+    double x2_max = x2 + w2;
+    double z2_min = z2;
+    double z2_max = z2 + l2;
+    double y2_min = y2;
+    double y2_max = y2 + h2;
+
     return (
-        x1 < x2 + w2 &&
-        x1 + w1 > x2 &&
-        y1 < y2 + h2 &&
-        y1 + h1 > y2 &&
-        z1 < z2 + l2 &&
-        z1 + l1 > z2
+        x1_min < x2_max && x1_max > x2_min &&
+        y1_min < y2_max && y1_max > y2_min &&
+        z1_min < z2_max && z1_max > z2_min
     );
 }
 

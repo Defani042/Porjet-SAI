@@ -94,7 +94,7 @@ void affichage(){
     /*Init de la matrice de visualisation*/
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(eyeX,eyeY,eyeZ,eyeX + directionX,eyeY + directionY,eyeZ + directionZ,upX,upY,upZ);
+    gluLookAt(eyeX,eyeY,eyeZ+2,eyeX+ directionX,eyeY + directionY,eyeZ + directionZ+2,upX,upY,upZ);
 
     /*Parallelepiped(-40,-40,-5,40,40,5);*/
     afficher3d();

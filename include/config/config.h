@@ -18,9 +18,9 @@
 
 
 /*definiation de la hitbox du joueur*/
-#define LONG 1.0
-#define LARG 1.0
-#define HAUT 3.0
+#define LONG 2.0
+#define LARG 2.0
+#define HAUT 2.0
 
 
 /*CAPACITER DU JOUEUR*/
