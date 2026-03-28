@@ -16,6 +16,10 @@
 
 #define PADING 15
 
+/*OBJ CENTRER OU NON*/
+#define CENTRER 1
+#define NO_CENTRER 0
+
 
 /*definiation de la hitbox du joueur*/
 #define LONG 2.0

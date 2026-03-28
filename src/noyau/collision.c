@@ -11,55 +11,53 @@ A: Adrien
 int collision_hitbox(
     double x1, double y1, double z1,
     double w1, double h1, double l1,
+    int centered1,
+
     double x2, double y2, double z2,
-    double w2, double h2, double l2)
+    double w2, double h2, double l2,
+    int centered2)
 {
-    double x1_min = x1 - w1/2;
-    double x1_max = x1 + w1/2;
-    double z1_min = z1 - l1/2;
-    double z1_max = z1 + l1/2;
-    double y1_min = y1 - h1/2;
-    double y1_max = y1 + h1/2;
+    double x1_min, x1_max;
+    double y1_min, y1_max;
+    double z1_min, z1_max;
 
-    double x2_min = x2 ;
-    double x2_max = x2 + w2;
-    double z2_min = z2;
-    double z2_max = z2 + l2;
-    double y2_min = y2;
-    double y2_max = y2 + h2;
+    double x2_min, x2_max;
+    double y2_min, y2_max;
+    double z2_min, z2_max;
 
-    return (
-        x1_min < x2_max && x1_max > x2_min &&
-        y1_min < y2_max && y1_max > y2_min &&
-        z1_min < z2_max && z1_max > z2_min
-    );
-}
+    /* Objet 1 */
+    if (centered1) {
+        x1_min = x1 - w1 / 2;
+        x1_max = x1 + w1 / 2;
+        y1_min = y1 - h1 / 2;
+        y1_max = y1 + h1 / 2;
+        z1_min = z1 - l1 / 2;
+        z1_max = z1 + l1 / 2;
+    } else {
+        x1_min = x1;
+        x1_max = x1 + w1;
+        y1_min = y1;
+        y1_max = y1 + h1;
+        z1_min = z1;
+        z1_max = z1 + l1;
+    }
 
-/*
-R: gestion de la colision entre deux objet
-E: 12 doubles les position et la taille des deux objet
-S: 0 si il n'y a pas de colision sinon 1
-A: Adrien
-*/
-int collision_objet(
-    double x1, double y1, double z1,
-    double w1, double h1, double l1,
-    double x2, double y2, double z2,
-    double w2, double h2, double l2)
-{
-    double x1_min = x1;
-    double x1_max = x1 + w1;
-    double z1_min = z1;
-    double z1_max = z1 + l1;
-    double y1_min = y1;
-    double y1_max = y1 + h1;
-
-    double x2_min = x2 ;
-    double x2_max = x2 + w2;
-    double z2_min = z2;
-    double z2_max = z2 + l2;
-    double y2_min = y2;
-    double y2_max = y2 + h2;
+    /* Objet 2 */
+    if (centered2) {
+        x2_min = x2 - w2 / 2;
+        x2_max = x2 + w2 / 2;
+        y2_min = y2 - h2 / 2;
+        y2_max = y2 + h2 / 2;
+        z2_min = z2 - l2 / 2;
+        z2_max = z2 + l2 / 2;
+    } else {
+        x2_min = x2;
+        x2_max = x2 + w2;
+        y2_min = y2;
+        y2_max = y2 + h2;
+        z2_min = z2;
+        z2_max = z2 + l2;
+    }
 
     return (
         x1_min < x2_max && x1_max > x2_min &&
@@ -89,8 +87,11 @@ objet detecter_collision_joueur(carte c)
         if (collision_hitbox(
                 c->j->pos->x, c->j->pos->y, c->j->pos->z,
                 c->j->largeur, c->j->hauteur, c->j->longueur,
+                CENTRER,
                 tmp->pos->x, tmp->pos->y, tmp->pos->z,
-                tmp->largeur, tmp->hauteur, tmp->longueur))
+                tmp->largeur, tmp->hauteur, tmp->longueur,
+                NO_CENTRER
+            ))
         {
             /*sprintf(col,"%s%s collison détetecter en (%f,%f,%f)" ,NOYAU,SUCC,c->j->pos->x,c->j->pos->y,c->j->pos->z);
             log_message(col);*/
@@ -123,10 +124,12 @@ objet detecter_collision_ennemi_objet(carte c,ennemi e)
     while (tmpo!=NULL)
     {
         if (
-        collision_objet(tmpo->pos->x,tmpo->pos->y,tmpo->pos->z,
+        collision_hitbox(tmpo->pos->x,tmpo->pos->y,tmpo->pos->z,
                         tmpo->largeur,tmpo->hauteur,tmpo->longueur,
+                        NO_CENTRER,
                         tmpe->pos->x,tmpe->pos->y,tmpe->pos->z,
                         tmpe->largeur,tmpe->hauteur,tmpe->longueur
+                        ,NO_CENTRER
         ))
         {
             /*sprintf(col,"%s%s collison détetecter en (%f,%f,%f)" ,NOYAU,SUCC,c->j->pos->x,c->j->pos->y,c->j->pos->z);
@@ -164,10 +167,12 @@ objet detecter_collision_ennemi_ennemi(carte c,ennemi e)
         /*objet de l'ennemie courrant*/
         tmpe1 = liste->obj;
         if (
-        collision_objet(tmpe1->pos->x,tmpe1->pos->y,tmpe1->pos->z,
+       collision_hitbox(tmpe1->pos->x,tmpe1->pos->y,tmpe1->pos->z,
                         tmpe1->largeur,tmpe1->hauteur,tmpe1->longueur,
+                        NO_CENTRER,
                         tmpe2->pos->x,tmpe2->pos->y,tmpe2->pos->z,
-                        tmpe2->largeur,tmpe2->hauteur,tmpe2->longueur
+                        tmpe2->largeur,tmpe2->hauteur,tmpe2->longueur,
+                        NO_CENTRER
         ))
         {
             /*sprintf(col,"%s%s collison détetecter en (%f,%f,%f)" ,NOYAU,SUCC,c->j->pos->x,c->j->pos->y,c->j->pos->z);

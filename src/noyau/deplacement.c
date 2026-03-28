@@ -189,8 +189,11 @@ void avencer_vague_ennemi(carte c)
             if (collision_hitbox(
                     j->pos->x, j->pos->y, j->pos->z,
                     j->largeur, j->hauteur, j->longueur,
+                    CENTRER,
                     tmp->obj->pos->x, tmp->obj->pos->y, tmp->obj->pos->z,
-                    tmp->obj->largeur, tmp->obj->hauteur, tmp->obj->longueur))
+                    tmp->obj->largeur, tmp->obj->hauteur, tmp->obj->longueur,
+                NO_CENTRER)
+            )
             {
                 degat(tmp->degat, j);
             }
