@@ -18,8 +18,8 @@ typedef struct  s_ennemi
     struct s_ennemi* next;
 }s_ennemi;
 
-typedef s_ennemi* ennemi;
-
+/*typedef s_ennemi* ennemi;
+*/
 
 ennemi creer_ennemi(objet o);
 

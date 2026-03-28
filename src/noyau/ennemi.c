@@ -22,6 +22,7 @@ ennemi creer_ennemi(objet o){
     e->next =NULL;
     e->vit = VIT_E;
     e->vie = VIE_E;
+    e->obj->parent = e;
     log_message(NOYAU SUCC "ennemie créé");
     return e;
 }

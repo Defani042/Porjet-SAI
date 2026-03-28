@@ -5,6 +5,8 @@
 #include <stdlib.h>
 
 #include "noyau/position.h"
+struct s_ennemi;
+typedef struct s_ennemi* ennemi;
 
 
 typedef struct s_objet
@@ -13,7 +15,7 @@ typedef struct s_objet
     position pos;
     double hauteur,largeur,longueur;
     double r,g,b;
-    
+    ennemi parent;
     struct s_objet * next;
 }s_objet;
 

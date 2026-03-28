@@ -27,6 +27,7 @@ objet creer_objet(position pos,double h,double l,double L){
     o->b = 1.0;
     o->pos = pos;
     o->next = NULL;
+    o->parent = NULL;
     log_message(NOYAU SUCC "Objet créé");
     return o;
 }
