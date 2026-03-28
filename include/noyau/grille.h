@@ -21,9 +21,7 @@ typedef struct s_grille {
 
 typedef s_grille * grille;
 
-
 grille creer_grille(int taile_x, int taille_y,double cell_size);
-
 
 void detruire_grille(grille g);
 

@@ -3,6 +3,13 @@
 
 #include "noyau/grille.h"
 
+
+/*
+R: création d'une grille
+E: 2 entiers (la taille x et la taille y du tableau) 1 double qui représente la taille de la grille (portion de la carte) 
+S: 1 TAD grille
+A: Adrien
+*/
 grille creer_grille(int taille_x, int taille_y,double cell_size){
     grille g ;
     int i,j;
@@ -39,6 +46,12 @@ grille creer_grille(int taille_x, int taille_y,double cell_size){
     return g;
 }
 
+/*
+R: Supression de la grille 
+E: 1 TAD grilles
+S: rien
+A: Adrien
+*/
 void detruire_grille(grille g) {
     int i;
     if (g== NULL){
