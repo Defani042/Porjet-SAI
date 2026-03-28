@@ -56,6 +56,20 @@ void Parallelepiped(float x, float y, float z, float dx, float dy, float dz) {
 }
 
 /*
+R: permet de dessiner une sphère
+E: les coordonnées et le rayon de la sphère
+S: rien
+A: Gaultier
+*/
+void sphere(float x, float y, float z, float radius) {
+     glColor3f(0.7f, 0.7f, 0.0f);
+    glPushMatrix();
+    glTranslatef(x, y, z);
+    glutSolidSphere(radius, 20, 20);
+    glPopMatrix();
+}
+
+/*
 R: permet d'aficher l'objet dans opengl
 E: 1 TAD objet
 S: rien
@@ -201,6 +215,8 @@ void afficher3d(){
     position pos = carte_jeu->j->pos;
     afficher_carte(carte_jeu);
     afficher_cercle3D(pos,3.0);
+
+    sphere(950.0, 0, 950, 50.0);
     
 }
 

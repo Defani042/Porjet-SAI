@@ -8,7 +8,7 @@
 #define USE_JET_PACK .1
 
 /*affichage*/
-#define DIST_REND 1000.0
+#define DIST_REND 3000.0
 
 /*COULDOWN DE  REGENERATION*/
 #define DURRER_JET 3

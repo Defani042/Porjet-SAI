@@ -54,11 +54,37 @@ carte creer_carte_test()
     return c;
 }
 
+void creer_monde(carte c){
+    objet ciel1,ciel2,ciel3,ciel4,ciel5,ciel6;
+
+    ciel1= creer_objet(creer_position(-1000,-1000,-1000),2000,2000,1);
+    couleur_objet(ciel1, 0.5f, 0.8f, 1.0f);
+    c->liste_objets = ajouter_fin(c->liste_objets, ciel1);
+
+    ciel2= creer_objet(creer_position(-1000,-1000,-1000),2000,1,2000);
+    couleur_objet(ciel2, 0.5f, 0.8f, 1.0f);
+    c->liste_objets = ajouter_fin(c->liste_objets, ciel2);
+
+    ciel3= creer_objet(creer_position(-1000,-1000,-1000),1,2000,2000);
+    couleur_objet(ciel3, 0.5f, 0.8f, 1.0f);
+    c->liste_objets = ajouter_fin(c->liste_objets, ciel3);
+
+    ciel4= creer_objet(creer_position(-1000,-1000,1000),2000,2000,1);
+    couleur_objet(ciel4, 0.5f, 0.8f, 1.0f);
+    c->liste_objets = ajouter_fin(c->liste_objets, ciel4);
+
+    ciel5= creer_objet(creer_position(-1000,1000,-1000),1,2000,2000);
+    couleur_objet(ciel5, 0.5f, 0.8f, 1.0f);
+    c->liste_objets = ajouter_fin(c->liste_objets, ciel5);
+
+    ciel6= creer_objet(creer_position(1000,-1000,-1000),2000,1,2000);
+    couleur_objet(ciel6, 0.5f, 0.8f, 1.0f);
+    c->liste_objets = ajouter_fin(c->liste_objets, ciel6);
+}
+
 carte creer_carte_jeu(){
     carte c;
-    objet sol,mur,mur1,mur2,mur3,plafond;
-
-    objet arrete1,arrete2,arrete3,arrete4,arrete5,arrete6,arrete7,arrete8;
+    objet sol;
 
     position pos_joueur;
 
@@ -71,63 +97,11 @@ carte creer_carte_jeu(){
     
     /*Création du sol et du plafond*/
     sol = creer_objet(creer_position(-250,-250,-2),500,500,2);
-    couleur_objet(sol, 0.0f, 0.9f, 0.0f);
+    couleur_objet(sol, 0.0f, 0.3f, 0.0f);
 
-    mur = creer_objet(creer_position(-250, -250, -2), 500, 2, 500);
-    couleur_objet(mur, 0.0f, 0.0f, 0.9f);
-
-    mur1 = creer_objet(creer_position(250, -250, -2), 500, 2, 500);
-    couleur_objet(mur1, 0.0f, 0.0f, 0.9f);
-
-    mur2 = creer_objet(creer_position(-250, 250, -2), 2, 500, 500);
-    couleur_objet(mur2, 0.0f, 0.0f, 0.9f);
-
-    mur3 = creer_objet(creer_position(-250, -250, -2), 2, 500, 500);
-    couleur_objet(mur3, 0.0f, 0.0f, 0.9f);
-
-    plafond = creer_objet(creer_position(-250,-250,498),500,500,2);
-    couleur_objet(plafond, 0.0f, 0.0f, 0.9f);
-
-    arrete1 = creer_objet(creer_position(-248, -248, -2), 1.0, 1.0,500.0);
-    couleur_objet(arrete1, 0.0f, 0.0f, 0.0f);
-
-    arrete2 = creer_objet(creer_position(248, -248, -2), 1.0, 1.0, 500.0);
-    couleur_objet(arrete2, 0.0f, 0.0f, 0.0f);
-
-    arrete3 = creer_objet(creer_position(-248, 248, -2), 1.0, 1.0, 500.0);
-    couleur_objet(arrete3, 0.0f, 0.0f, 0.0f);
-
-    arrete4 = creer_objet(creer_position(248, 248, -2), 1.0, 1.0, 500.0);
-    couleur_objet(arrete4, 0.0f, 0.0f, 0.0f);
-
-    arrete5 = creer_objet(creer_position(-248, -248, 498), 500.0, 1.0, 1.0);
-    couleur_objet(arrete5, 0.0f, 0.0f, 0.0f);
-
-    arrete6 = creer_objet(creer_position(-248, -248, 498), 1.0, 500.0, 1.0);
-    couleur_objet(arrete6, 0.0f, 0.0f, 0.0f);
-
-    arrete7 = creer_objet(creer_position(248, 248, 498), -500.0, 1.0, 1.0);
-    couleur_objet(arrete7, 0.0f, 0.0f, 0.0f);
-
-    arrete8 = creer_objet(creer_position(248, 248, 498), 1.0, -500.0, 1.0);
-    couleur_objet(arrete8, 0.0f, 0.0f, 0.0f);
-
+    creer_monde(c);
 
     c->liste_objets = ajouter_fin(c->liste_objets,sol);
-    c->liste_objets = ajouter_fin(c->liste_objets, plafond);
-    c->liste_objets = ajouter_fin(c->liste_objets, mur);
-    c->liste_objets = ajouter_fin(c->liste_objets, mur1);
-    c->liste_objets = ajouter_fin(c->liste_objets, mur2);
-    c->liste_objets = ajouter_fin(c->liste_objets, mur3);
-
-    c->liste_objets = ajouter_fin(c->liste_objets, arrete1);
-    c->liste_objets = ajouter_fin(c->liste_objets, arrete2);
-    c->liste_objets = ajouter_fin(c->liste_objets, arrete3);
-    c->liste_objets = ajouter_fin(c->liste_objets, arrete4);
-    c->liste_objets = ajouter_fin(c->liste_objets, arrete5);
-    c->liste_objets = ajouter_fin(c->liste_objets, arrete6);
-    c->liste_objets = ajouter_fin(c->liste_objets, arrete7);
-    c->liste_objets = ajouter_fin(c->liste_objets, arrete8);
 
     return c;
 }

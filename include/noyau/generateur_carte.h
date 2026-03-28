@@ -8,6 +8,8 @@
 
 carte creer_carte_test();
 
+void creer_monde(carte c);
+
 carte creer_carte_jeu();
 
 #endif /*_GENERATEUR_CARTE_H_*/
