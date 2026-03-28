@@ -16,7 +16,7 @@ int r = 16;
 int b = -9;
 int top = 9;
 int n = PADING;
-int f = 1000;
+int f = DIST_REND;
 int largeur_ecran;
 int hauteur_ecran;
 
@@ -163,7 +163,7 @@ void affichage(){
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     /*glFrustum(l,r,b,top,n,f);*/
-    gluPerspective(60.0f, (float)largeur_ecran / hauteur_ecran, 0.1f, 1000.0f);
+    gluPerspective(60.0f, (float)largeur_ecran / hauteur_ecran, 0.1f, f);
 
     /*Init de la matrice de visualisation*/
     glMatrixMode(GL_MODELVIEW);
