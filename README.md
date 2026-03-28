@@ -74,7 +74,7 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
   - gestion des colision entre objet et joueur
 
 - **generateur_ennemi** (`generateur_ennemi.c / generateur_ennemi.h`)  
-  gestiond de la genération des ennemi
+  gestion de la genération des ennemi
   - création d'une template pour les ennemi
   - spawn des ennemi sur la carte 
 
