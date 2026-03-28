@@ -87,6 +87,10 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
   gestion de la collision entre les élément de la carte
   - gestion du deplacement du joueur 
   - gestion du deplacement des ennemie
+
+- **grille** (`grille.c / grille.h`)  
+  structure qui améliore les complexité des fonction de colision
+  - gestion de la grille
 ---
 
 
