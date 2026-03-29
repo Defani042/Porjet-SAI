@@ -169,4 +169,6 @@ void remplir_grille_dynamique(grille g, ennemi liste_ennemis) {
     }
 }
 
+void afficher_grille(grille g) { int i, j; int n; if (!g) return; /* Affichage des indices des colonnes */ printf(" "); /* espace pour les indices de lignes */ for (i = 0; i < g->taille_x; i++) { printf("%3d", i); } printf("\n"); /* Ligne supérieure */ printf(" "); for (i = 0; i < g->taille_x; i++) { printf("---"); } printf("\n"); /* Parcours de la grille (axe Y de haut en bas) */ for (j = g->taille_y - 1; j >= 0; j--) { printf("%2d|", j); /* numéro de ligne */ for (i = 0; i < g->taille_x; i++) { n = taille_objet(g->cellules[i][j]->liste); if (n > 0) printf("%2d ", n); else printf(" . "); } printf("\n"); } /* Ligne du bas */ printf(" "); for (i = 0; i < g->taille_x; i++) { printf("---"); } printf("\n"); }
+
 #endif /*_GRILLE_C_*/

@@ -34,4 +34,6 @@ void remplir_grille_statique(grille g, objet liste_objets);
 
 void remplir_grille_dynamique(grille g, ennemi liste_ennemis);
 
+void afficher_grille(grille g);
+
 #endif /*_GRILLE_H_*/
