@@ -129,8 +129,8 @@ void draw_text_underlined_color(float x, float y, const char* text,float r, floa
     glColor3f(r, g, b);
     /* Soulignement */
     glBegin(GL_LINES);
-        glVertex2f(x, y - UNDERLINE_OFFSET);              /* offset propre */
-        glVertex2f(x + width, y - UNDERLINE_OFFSET);
+        glVertex2f(x, y + UNDERLINE_OFFSET);              /* offset propre */
+        glVertex2f(x + width, y + UNDERLINE_OFFSET);
     glEnd();
 }
 
