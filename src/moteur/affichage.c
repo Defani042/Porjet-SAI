@@ -205,8 +205,8 @@ void affichage(){
     regeneration_vie(carte_jeu->j);
     avencer_vague_ennemi(carte_jeu);
     maj_grille_dynamique(carte_jeu->liste_ennemi);
-
-
+    printf("NOMBRE OBJ dans la map: %d\n",taille_objet(carte_jeu->liste_objets)); 
+    printf("POSITION DU JOUEUR SUR LA CARTE: (x:%f,y:%f",carte_jeu->j->pos->x,carte_jeu->j->pos->y);
     /* Mesure du temps */
     /*fin = clock();
     temps = (double)(fin - debut) / CLOCKS_PER_SEC;
