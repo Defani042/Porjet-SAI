@@ -16,4 +16,8 @@ float get_text_width(const char* text);
 
 void draw_text_underlined(float x, float y, const char* text);
 
+void draw_text_color(float x, float y, const char* text, float r, float g, float b);
+
+void draw_text_underlined_color(float x, float y, const char* text,float r, float g, float b);
+
 #endif

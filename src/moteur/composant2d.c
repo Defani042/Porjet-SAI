@@ -83,4 +83,55 @@ void draw_text_underlined(float x, float y, const char* text)
     glEnd();
 }
 
+/*
+R: permet d'afficher du texte en couleur 
+E: 2 float (les coordonné x,y) et une chaine de caractère et 3 float (la couleur R G B)
+S: rien
+A: Adrien
+*/
+void draw_text_color(float x, float y, const char* text, float r, float g, float b)
+{
+    /* Déclarations C89 */
+    const char* tmp;
+
+    /* Couleur */
+    glColor3f(r, g, b);
+
+    /* Position */
+    glRasterPos2f(x, y);
+
+    /* Dessin */
+    tmp = text;
+    while (*tmp)
+    {
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *tmp);
+        tmp++;
+    }
+}
+
+/*
+R: permet d'afficher du texte surligné en couleur 
+E: 2 float (les coordonné x,y) et une chaine de caractère et 3 float (la couleur R G B)
+S: rien
+A: Adrien
+*/
+void draw_text_underlined_color(float x, float y, const char* text,float r, float g, float b)
+{
+    float width;
+
+    /* Largeur du texte */
+    width = get_text_width(text);
+  
+    /* Dessin du texte */
+    draw_text_color(x, y, text,r,g,b);
+
+    /* Couleur */
+    glColor3f(r, g, b);
+    /* Soulignement */
+    glBegin(GL_LINES);
+        glVertex2f(x, y - UNDERLINE_OFFSET);              /* offset propre */
+        glVertex2f(x + width, y - UNDERLINE_OFFSET);
+    glEnd();
+}
+
 #endif /*_COMPOSANT2D_C_*/
