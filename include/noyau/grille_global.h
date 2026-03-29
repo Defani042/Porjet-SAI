@@ -9,4 +9,7 @@ extern grille grille_statique;
 /* Grille dynamique : ennemis et objets mobiles */
 extern grille grille_dynamique;
 
+
+void maj_grille_dynamique(ennemi liste_ennemis);
+
 #endif /* _GRILLE_GLOBAL_H_ */

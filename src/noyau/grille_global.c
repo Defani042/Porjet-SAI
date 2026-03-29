@@ -9,4 +9,10 @@ grille grille_statique = NULL;
 grille grille_dynamique = NULL;
 
 
+void maj_grille_dynamique(ennemi liste_ennemis) {
+    vider_grille(grille_dynamique);
+    remplir_grille_dynamique(grille_dynamique, liste_ennemis);
+    log_message(NOYAU SUCC "Grille dynamique mise à jour");
+}
+
 #endif /*CARTE_GLOBALE_C_*/

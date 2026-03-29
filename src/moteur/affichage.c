@@ -204,6 +204,7 @@ void affichage(){
     regenerer_jetpack(carte_jeu->j);
     regeneration_vie(carte_jeu->j);
     avencer_vague_ennemi(carte_jeu);
+    maj_grille_dynamique(carte_jeu->liste_ennemi);
 
 
     /* Mesure du temps */
