@@ -6,7 +6,9 @@
 #include <math.h>
 #include <time.h>
 
+/*VAR GLOBALE*/
 extern clock_t dernier_temps_jetpack;
+extern clock_t dernier_temps_degat;
 
 
 #include "config/config.h"
@@ -56,5 +58,7 @@ void niveau_suivant(joueur j);
 void reapparition(joueur j);
 
 void regenerer_jetpack(joueur j);
+
+void regeneration_vie(joueur j);
 
 #endif /*_JOUEUR_H_*/

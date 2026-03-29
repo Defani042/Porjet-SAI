@@ -200,6 +200,7 @@ void affichage(){
     /*application de la logique du jeu*/
     bas();
     regenerer_jetpack(carte_jeu->j);
+    regeneration_vie(carte_jeu->j);
     avencer_vague_ennemi(carte_jeu);
 
 

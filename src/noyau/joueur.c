@@ -3,7 +3,9 @@
 
 #include"noyau/joueur.h"
 
+/*VAR GLOBALE*/
 clock_t dernier_temps_jetpack = 0;
+clock_t dernier_temps_degat = 0;
 
 /*
 R: création d'un joueur
@@ -87,6 +89,7 @@ void degat(int deg,joueur j){
         log_message(NOYAU WARN "Joueur NULL! fonction degat()");
         return;
     }
+    dernier_temps_degat = clock();
     j->vie -= deg/j->def;
 }
 
@@ -139,7 +142,9 @@ void reapparition(joueur j){
         j->pos->x = -5;
         j->pos->y = -5;
         j->pos->z = 5;
+        degat(VOID_DAMAGE,j);
         log_message(NOYAU SUCC "replacement du joueur en (0,0,5)");
+        
     }
 
 }
@@ -150,7 +155,6 @@ E: 1 TAD joueur
 S: vide
 A: Adrien
 */
-
 void regenerer_jetpack(joueur j) {
     clock_t curr_time = clock();
     double durrer = (double)(curr_time - dernier_temps_jetpack) / CLOCKS_PER_SEC;
@@ -162,6 +166,26 @@ void regenerer_jetpack(joueur j) {
         /*Limite à la valeur max*/
         if (j->jetpack > j->jetpack_max) {
             j->jetpack = j->jetpack_max;
+        }
+    }
+}
+
+/*
+R: regeneration de la vie 
+E: 1 TAD joueur 
+S: vide
+A: Adrien
+*/
+void regeneration_vie(joueur j){
+    clock_t curr_time = clock();
+    double durrer = (double)(curr_time - dernier_temps_degat) / CLOCKS_PER_SEC;
+     if (durrer >= DURRER_VIE) {
+        /*Ajoute la régénération*/
+        j->vie += j->reg_vie;
+
+        /*Limite à la valeur max*/
+        if (j->vie > j->vie_max) {
+            j->vie = j->vie_max;
         }
     }
 }

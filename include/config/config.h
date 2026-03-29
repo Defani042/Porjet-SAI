@@ -5,18 +5,22 @@
 #include <stdlib.h>
 
 #define SET_UP_ORIGINE_POS creer_position(0,0,0)
+
+/*MACRO UTILISATION*/
 #define USE_JET_PACK .1
+#define VOID_DAMAGE 10
 
 /*affichage*/
 #define DIST_REND 3000.0
+#define PADING 15
 
 /*COULDOWN DE  REGENERATION*/
 #define DURRER_JET 5
-
+#define DURRER_VIE 5
 /*OFFSET DU SOULIGNAGE*/
 #define UNDERLINE_OFFSET 3.0f
 
-#define PADING 15
+
 
 /*OBJ CENTRER OU NON*/
 #define CENTRER 1
