@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "grille.h"
+
 
 #include "noyau/carte.h"
 int collision_hitbox(
@@ -16,10 +18,10 @@ int collision_hitbox(
     int centered2
 );
 
-objet detecter_collision_joueur(carte c);
+objet detecter_collision_generique(grille g, double px, double py, double pz, double w, double h, double l, int centered);
 
-objet detecter_collision_ennemi_objet(carte c,ennemi e);
+objet detecter_collision_joueur(grille g, joueur j);
 
-objet detecter_collision_ennemi_ennemi(carte c,ennemi e);
+objet detecter_collision_ennemi(grille g, ennemi e);
 
 #endif /* _COLLISION_H_ */

@@ -61,15 +61,15 @@ void deplacer_joueur(carte c, double dx, double dy, double dz)
 
     /* Application avec collisions */
     j->pos->x += move_x * pas;
-    if (detecter_collision_joueur(c))
+     if (detecter_collision_joueur(grille_statique,c->j))
         j->pos->x = old_x;
 
     j->pos->y += move_y * pas;
-    if (detecter_collision_joueur(c))
+     if (detecter_collision_joueur(grille_statique,c->j))
         j->pos->y = old_y;
 
     j->pos->z += move_z * pas;
-    if (detecter_collision_joueur(c))
+    if (detecter_collision_joueur(grille_statique,c->j))
         j->pos->z = old_z;
 }
 
@@ -101,8 +101,7 @@ void deplacer_ennemi_vers_joueur(carte c, ennemi e, joueur joueur)
     dz = joueur->pos->z - e->obj->pos->z;
 
     longueur = (float)sqrt(dx*dx + dy*dy + dz*dz);
-    if (longueur == 0.0f)
-        return;
+    if (longueur == 0.0)return;
 
     dx /= longueur;
     dy /= longueur;
@@ -116,8 +115,8 @@ void deplacer_ennemi_vers_joueur(carte c, ennemi e, joueur joueur)
     /* ===== Axe X ===== */
     e->obj->pos->x = oldX + dx * vitesse;
 
-    if (detecter_collision_ennemi_objet(c, e) != NULL ||
-        detecter_collision_ennemi_ennemi(c, e) != NULL)
+    if (detecter_collision_ennemi(grille_statique,e) != NULL ||
+        detecter_collision_ennemi(grille_dynamique,e)!= NULL)
     {
         e->obj->pos->x = oldX;
     }
@@ -125,8 +124,8 @@ void deplacer_ennemi_vers_joueur(carte c, ennemi e, joueur joueur)
     /* ===== Axe Y ===== */
     e->obj->pos->y = oldY + dy * vitesse;
 
-    if (detecter_collision_ennemi_objet(c, e) != NULL ||
-        detecter_collision_ennemi_ennemi(c, e) != NULL)
+   if (detecter_collision_ennemi(grille_statique,e) != NULL ||
+        detecter_collision_ennemi(grille_dynamique,e)!= NULL)
     {
         e->obj->pos->y = oldY;
     }
@@ -134,8 +133,8 @@ void deplacer_ennemi_vers_joueur(carte c, ennemi e, joueur joueur)
     /* ===== Axe Z ===== */
     e->obj->pos->z = oldZ + dz * vitesse;
 
-    if (detecter_collision_ennemi_objet(c, e) != NULL ||
-        detecter_collision_ennemi_ennemi(c, e) != NULL)
+    if (detecter_collision_ennemi(grille_statique,e) != NULL ||
+        detecter_collision_ennemi(grille_dynamique,e)!= NULL)
     {
         e->obj->pos->z = oldZ;
     }
@@ -168,7 +167,7 @@ void avencer_vague_ennemi(carte c)
         /* verification mort */
         if (mort(tmp))
         {
-             log_message(NOYAU SUCC "un ennemie est mort");
+            log_message(NOYAU SUCC "un ennemie est mort");
             supprimer_ennemi_ptr(c->liste_ennemi, tmp);
         }
         else

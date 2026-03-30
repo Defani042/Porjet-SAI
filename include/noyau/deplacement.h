@@ -6,6 +6,7 @@
 
 #include "noyau/carte.h"
 #include "noyau/collision.h"
+#include "noyau/grille_global.h"
 
 void deplacer_joueur(carte c, double dirx, double diry, double dirz);
 
