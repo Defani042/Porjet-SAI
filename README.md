@@ -91,6 +91,13 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
 - **grille** (`grille.c / grille.h`)  
   structure qui améliore les complexité des fonction de colision
   - gestion de la grille
+
+- **grille_global** (`grille_global.c / grille_global.h`)  
+  gestion des variables globals, grille dynamique et statique
+
+- **carte** (`carte.c / carte.h`)  
+  gestion de la variable gloabal carte_jeu  
+
 ---
 
 
