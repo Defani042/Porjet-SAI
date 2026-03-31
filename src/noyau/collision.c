@@ -65,128 +65,75 @@ int collision_hitbox(
         z1_min < z2_max && z1_max > z2_min
     );
 }
-
-/*
-R: gestion de la colision avec tous les objet de la carte
-E: 1 TAD carte
-S: l'objet en colistion avec le joueur ou NULL si aucune colision
-A: Adrien
+/* 
+R: gestion de la colision generique 
+E: 1 TAD grille ,6 doubles(coordonnés(x,y,z) et dimension(longeur,largeur,hauteur)) 
+S: retourne l'objet colisionner ou NULL A: Adrien 
 */
-objet detecter_collision_joueur(carte c)
+objet detecter_collision_generique(grille g, double px, double py, double pz, double w, double h, double l, int centered)
+{
+    int i, j;
+    int x_start, x_end, y_start, y_end;
+    objet o;
+    if (!g)
+        return NULL; /* Calcul des cellules couvertes par la hitbox */
+    x_start = coord_to_cell_x(centered ? px - w / 2 : px,g);
+    x_end = coord_to_cell_x(centered ? px + w / 2 : px + w,g);
+    y_start = coord_to_cell_y(centered ? py - h / 2 : py, g);
+    y_end = coord_to_cell_y(centered ? py + h / 2 : py + h,g);
+
+    /*on ne gère pas les objet hors de la map*/
+    if(x_end == -1 || x_start == -1 || y_end== -1 || y_start ==-1)return NULL;
+  
+
+    for (i = x_start; i <= x_end; i++)
+    {
+        for (j = y_start; j <= y_end; j++)
+        {
+            o = g->objets[i][j];
+            while (o != NULL)
+            {
+                if (collision_hitbox(px, py, pz, w, h, l, centered, o->pos->x, o->pos->y, o->pos->z, o->largeur, o->hauteur, o->longueur, NO_CENTRER))
+                    return o;
+                o = o->next;
+            }
+        }
+    }
+    return NULL;
+} 
+
+/* 
+R: gestion de la colision du joueur 
+E: 1 TAD grille ,1 TAD joueur 
+S: retourne l'objet colisionner ou NULL 
+A: Adrien 
+*/
+objet detecter_collision_joueur(grille g, joueur j)
+{
+    if (!j)
+        return NULL; /* joueur est centré */
+    return detecter_collision_generique(g, j->pos->x, j->pos->y, j->pos->z, j->largeur, j->hauteur, j->longueur, 1);
+} 
+/* 
+R: gestion de la colision des ennemie 
+E: 1 TAD grille ,1 TAD ennemie 
+S: retourne l'objet colisionner ou NULL 
+A: Adrien 
+*/
+objet detecter_collision_ennemi(grille g, ennemi e)
 {
     objet tmp;
-    /*char col[128];*/
-
-    if (c == NULL || c->j == NULL)
-        return NULL;
-
-    tmp = c->liste_objets;
-
-    while (tmp != NULL)
-    {
-        if (collision_hitbox(
-                c->j->pos->x, c->j->pos->y, c->j->pos->z,
-                c->j->largeur, c->j->hauteur, c->j->longueur,
-                CENTRER,
-                tmp->pos->x, tmp->pos->y, tmp->pos->z,
-                tmp->largeur, tmp->hauteur, tmp->longueur,
-                NO_CENTRER
-            ))
-        {
-            /*sprintf(col,"%s%s collison détetecter en (%f,%f,%f)" ,NOYAU,SUCC,c->j->pos->x,c->j->pos->y,c->j->pos->z);
-            log_message(col);*/
-            return tmp;  /* collision trouvée */
-        }
-
-        tmp = tmp->next;
-    }
-
-    return NULL; /* pas de collision */
-}
-
-/*
-R: gestion de la colision avec tous les objet et les ennemie de la carte
-E: 1 TAD carte et 1 TAD ennemi
-S: l'objet en colistion avec le joueur ou NULL si aucune colision
-A: Adrien
-*/
-objet detecter_collision_ennemi_objet(carte c,ennemi e)
-{
-     /*char col[128];*/
-    objet tmpo = c->liste_objets;
-    objet tmpe = e->obj;
-
-    if (c == NULL || e == NULL || e->obj == NULL){
-        log_message(NOYAU WARN "un des paramètre de detecter_collision_ennemi_objet() est NULL");
-        return NULL;
-    }
-
-    while (tmpo!=NULL)
-    {
-        if (
-        collision_hitbox(tmpo->pos->x,tmpo->pos->y,tmpo->pos->z,
-                        tmpo->largeur,tmpo->hauteur,tmpo->longueur,
-                        NO_CENTRER,
-                        tmpe->pos->x,tmpe->pos->y,tmpe->pos->z,
-                        tmpe->largeur,tmpe->hauteur,tmpe->longueur
-                        ,NO_CENTRER
-        ))
-        {
-            /*sprintf(col,"%s%s collison détetecter en (%f,%f,%f)" ,NOYAU,SUCC,c->j->pos->x,c->j->pos->y,c->j->pos->z);
-            log_message(col);*/
-            return tmpo;
-        }
-        tmpo = tmpo->next;/*passage à next*/
-
-    }
-    return NULL; /* pas de collision */
+    if (!e || !e->obj)
+        return NULL;  /* pour chaque objet de l’ennemi */
+    tmp = detecter_collision_generique(g, e->obj->pos->x, e->obj->pos->y, e->obj->pos->z, e->obj->largeur, e->obj->hauteur, e->obj->longueur, 0); /* objets non centrés */
     
-}
+    if (tmp == NULL)
+        return NULL; /* pas de collision */
 
-
-/*
-R: gestion de la colision avec tous les ennemi
-E: 1 TAD carte et 1 TAD ennemi
-S: l'objet en colistion avec le joueur ou NULL si aucune colision
-A: Adrien
-*/
-objet detecter_collision_ennemi_ennemi(carte c,ennemi e)
-{
-    /*char col[128];*/
-    ennemi liste = c->liste_ennemi;
-    objet tmpe1;
-    objet tmpe2 = e->obj;
-
-    if (c == NULL || e == NULL || e->obj == NULL){
-        log_message(NOYAU WARN "un des paramètre de detecter_collision_ennemi_ennemi() est NULL");
+    /* vérifie que l'objet appartient bien à cet ennemi */
+    if (tmp->parent == e)
         return NULL;
-    }
-        
-    while (liste!=NULL)
-    {
-        /*objet de l'ennemie courrant*/
-        tmpe1 = liste->obj;
-        if (
-       collision_hitbox(tmpe1->pos->x,tmpe1->pos->y,tmpe1->pos->z,
-                        tmpe1->largeur,tmpe1->hauteur,tmpe1->longueur,
-                        NO_CENTRER,
-                        tmpe2->pos->x,tmpe2->pos->y,tmpe2->pos->z,
-                        tmpe2->largeur,tmpe2->hauteur,tmpe2->longueur,
-                        NO_CENTRER
-        ))
-        {
-            /*sprintf(col,"%s%s collison détetecter en (%f,%f,%f)" ,NOYAU,SUCC,c->j->pos->x,c->j->pos->y,c->j->pos->z);
-            log_message(col);*/
-            return tmpe1;
-        }
-        liste = liste->next;/*passage à next*/
 
-    }
-    return NULL; /* pas de collision */
-    
+    return tmp;
 }
-
-
-
-
 #endif /* _COLLISION_C_ */

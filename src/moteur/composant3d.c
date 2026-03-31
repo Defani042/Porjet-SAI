@@ -258,6 +258,7 @@ void afficher_carte(carte c) {
             afficher_ennemie(e);
             nb_obj++;
         }
+        e = e->next;
     }
     
 }

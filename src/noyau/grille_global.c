@@ -17,8 +17,8 @@ void maj_grille_dynamique(ennemi liste_ennemis) {
     printf("GRILLE DYNAMIQUE:\n");
     afficher_grille(grille_dynamique);
     printf("GRILLE STATIQUE:\n");
-    afficher_grille(grille_statique);
-    */
+    afficher_grille(grille_statique);*/
+    
     }
 
 
