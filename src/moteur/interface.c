@@ -228,6 +228,17 @@ void afficher_menu_debug(){
     
 }
 
+void afficher_kill(){
+    char buff[32];
+    int x =20;
+    int y =100;
+
+    sprintf(buff,"KILL : %d",nbkill);
+    draw_rect(x,y,80,35,0,0,0,1);
+    draw_text(x+5,y+25,buff);
+
+}
+
 
 /*
 R: permet d'afficher l'interface
@@ -244,6 +255,7 @@ void afficher_interface(){
         glutPostRedisplay();
         glutIdleFunc(NULL);
     }
+    afficher_kill();
     afficher_vie();
     afficher_jet();
     afficher_timmer();

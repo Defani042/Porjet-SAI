@@ -12,6 +12,9 @@
 #include "moteur/composant2d.h"
 #include "moteur/affichage.h"
 
+/*partie noyau*/
+#include "noyau/deplacement.h"
+
 extern clock_t timer;
 extern int show_menu_debug;
 extern int aff_amelioration;
@@ -37,6 +40,8 @@ void afficher_timmer();
 void afficher_nb_ennemie();
 
 void afficher_menu_debug();
+
+void afficher_kill();
 
 void afficher_interface();
 
