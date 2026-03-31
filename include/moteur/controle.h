@@ -17,6 +17,7 @@ extern float positionY;
 extern float directionX;
 extern float directionY;
 extern float directionZ;
+extern int competence;
 
 void avancer();
 

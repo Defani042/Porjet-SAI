@@ -136,6 +136,7 @@ void animer(){
     if (!(current_time - last_time < CLOCKS_PER_SEC / 60)){
         last_time = current_time;
         angle_soleil += 0.0001f;
+        bas();
         raffraichir();
         glutPostRedisplay();
     }
@@ -203,7 +204,6 @@ void affichage(){
 
 
     /*application de la logique du jeu*/
-    bas();
     regenerer_jetpack(carte_jeu->j);
     regeneration_vie(carte_jeu->j);
     avencer_vague_ennemi(carte_jeu);

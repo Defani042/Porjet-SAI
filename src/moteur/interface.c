@@ -241,6 +241,8 @@ void afficher_interface(){
     }
     if(aff_amelioration){
         aff_fen_amelioration(); /*changer la condition pour le booleen aff_amelioration*/
+        glutPostRedisplay();
+        glutIdleFunc(NULL);
     }
     afficher_vie();
     afficher_jet();

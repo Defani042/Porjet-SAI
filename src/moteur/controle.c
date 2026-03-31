@@ -21,6 +21,9 @@ float positionY = 0.0f;
 /*direction ou le joueur regarde*/
 float angle_direction;
 
+/*competence choisie*/
+int competence = 0;
+
 /*
 R: Permet d'avancer
 E: rien
@@ -191,11 +194,14 @@ A: Gaultier
 void show_menu_upgrade(){
     if(aff_amelioration == 0){
         aff_amelioration = 1;
+        glutPassiveMotionFunc(NULL);
         glutSetCursor(GLUT_CURSOR_INHERIT);
     }
     else{
         aff_amelioration = 0;
+        glutPassiveMotionFunc(mouvement_souris);
         glutSetCursor(GLUT_CURSOR_NONE);
+        glutIdleFunc(animer);
     }
 }
 
@@ -212,7 +218,7 @@ void touche_pressee(unsigned char touche, int x, int y) {
     if(touche == 'k'){
         show_debug_menu();
     }
-    if(touche == 'l'){
+    if(touche == 27){ /*echap*/
         show_menu_upgrade();
     }
 }
@@ -266,17 +272,18 @@ void gerer_souris(int bouton, int etat, int x, int y){
     if(bouton == 0 && etat == 1 && aff_amelioration){
         if(x > largeur_ecran/2-200 && x < largeur_ecran/2+200){
             if(y > hauteur_ecran/2-180 && y < hauteur_ecran/2-80){
-                printf("Amélioration 1 choisie\n");
+                competence = 1;
                 show_menu_upgrade();
             }
             if(y > hauteur_ecran/2-40 && y < hauteur_ecran/2+60){
-                printf("Amélioration 2 choisie\n");
+                competence = 2;
                 show_menu_upgrade();
             }
             if(y > hauteur_ecran/2+110 && y < hauteur_ecran/2+210){
-                printf("Amélioration 3 choisie\n");
+                competence = 3;
                 show_menu_upgrade();
             }
+            printf("Amélioration %d choisie\n",competence);
         }
     }
 }
