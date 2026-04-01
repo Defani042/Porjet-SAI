@@ -81,12 +81,13 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
 - **collision** (`collision.c / collision.h`)  
   gestion de la collision entre les élément de la carte
   - gestion de collision du joueur 
-  - gestion de collision des ennemie
+  - gestion de collision des ennemi
 
-- **deplacement** (`collision.c / collision.h`)  
+- **deplacement** (`deplacement.c / deplacement.h`)  
   gestion de la collision entre les élément de la carte
   - gestion du deplacement du joueur 
-  - gestion du deplacement des ennemie
+  - gestion du deplacement des ennemi
+  - gestion du contournement des ennemi
 
 - **grille** (`grille.c / grille.h`)  
   structure qui améliore les complexité des fonction de colision
@@ -95,7 +96,7 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
 - **grille_global** (`grille_global.c / grille_global.h`)  
   gestion des variables globals, grille dynamique et statique
 
-- **carte** (`carte.c / carte.h`)  
+- **carte** (`carte_global.c / carte_global.h`)  
   gestion de la variable gloabal carte_jeu  
 
 ---
@@ -132,6 +133,15 @@ Le projet est organisé en modules pour séparer les responsabilités et facilit
   - affichage d'un objet en 3d
   - affichage de la carte en 3D
 
+- **menu_amelioration** (`menu_amelioration.c / menu_amelioration.h`)     
+  Gestion de l'affichage du menu d'amelioration  
+
+
+- **menu_pause** (`menu_pause.c / menu_pause.h`)     
+  Gestion de l'affichage du menu du menu pause  
+  - gestion de la sortie du jeu 
+  - gestion de la reprise du jeu  
+   
 ---
 
 ### 3 Module `config`
