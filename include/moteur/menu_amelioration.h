@@ -8,6 +8,6 @@ extern char *description1;
 extern char *description2;
 extern char *description3;
 
-void aff_fen_amelioration();
+void afficher_fenetre_amelioration();
 
 #endif /*_MENU_AMELIORATION_H_*/

@@ -2,6 +2,7 @@
 #define _JOUEUR_C_
 
 #include"noyau/joueur.h"
+#include"moteur/controle.h"
 
 /*VAR GLOBALE*/
 clock_t dernier_temps_jetpack = 0;
@@ -133,6 +134,7 @@ void niveau_suivant(joueur j){
         j->niv++;          /* niveau supérieur */
         j->xp = 0;         /* réinitialisation de l'expérience */
         j->seuil *= 2;     /* seuil pour le prochain niveau */
+        show_menu_upgrade(); /*affiche le menu d'amélioration*/
     }
 }
 

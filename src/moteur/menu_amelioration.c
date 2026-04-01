@@ -13,7 +13,7 @@ E: rien
 S: rien
 A: Gaultier
 */
-void aff_fen_amelioration(){
+void afficher_fenetre_amelioration(){
     int ame_x = largeur_ecran/2-300;
     int ame_y = hauteur_ecran/2-250;
 
