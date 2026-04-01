@@ -131,7 +131,7 @@ void niveau_suivant(joueur j){
         log_message(buff);
 
         j->niv++;          /* niveau supérieur */
-        j->xp = 0;         /* réinitialisation de l'expérience */
+        j->xp -= j->niv * j->seuil; /* garde le surplus */
         j->seuil *= 2;     /* seuil pour le prochain niveau */
     }
 }
