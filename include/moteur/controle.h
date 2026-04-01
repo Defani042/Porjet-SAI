@@ -9,8 +9,10 @@
 
 /*partie moteur*/
 #include "moteur/affichage.h"
+#include "moteur/menu_amelioration.h"
 /*partie noyau*/
 #include "noyau/deplacement.h"
+#include "noyau/carte_globale.h"
 
 extern float positionX;
 extern float positionY;

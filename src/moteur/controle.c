@@ -307,23 +307,20 @@ void gerer_souris(int bouton, int etat, int x, int y){
             if(y > hauteur_ecran/2-180 && y < hauteur_ecran/2-80){
                 competence = 1;
                 show_menu_upgrade();
-                /*amelirorer_stat(j,competence1,val1);*/
             }
             if(y > hauteur_ecran/2-40 && y < hauteur_ecran/2+60){
                 competence = 2;
                 show_menu_upgrade();
-                /*amelirorer_stat(j,competence2,val2);*/
             }
             if(y > hauteur_ecran/2+110 && y < hauteur_ecran/2+210){
                 competence = 3;
                 show_menu_upgrade();
-                /*amelirorer_stat(j,competence3,val3);*/
             }
-        }
-        if(x > largeur_ecran - 20 && y < 20){
-            show_menu_upgrade();
-            glutPostRedisplay();
-            interruption = 1;
+            switch(competence){
+                case 1: amelirorer_stat(carte_jeu->j,stat_competence1,val1);break;
+                case 2: amelirorer_stat(carte_jeu->j,stat_competence2,val2);break;
+                default: amelirorer_stat(carte_jeu->j,stat_competence3,val3);break;
+            }
         }
     }
     if(bouton == 0 && etat == 1 && aff_pause){
