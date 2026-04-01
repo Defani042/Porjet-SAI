@@ -199,14 +199,12 @@ void show_menu_upgrade(){
     if(aff_amelioration == 0){
         aff_amelioration = 1;
         choix_competence();
-        glutPassiveMotionFunc(NULL);
         glutSetCursor(GLUT_CURSOR_INHERIT);
     }
     else{
         aff_amelioration = 0;
         glutPassiveMotionFunc(mouvement_souris);
         glutSetCursor(GLUT_CURSOR_NONE);
-        glutIdleFunc(animer);
     }
 }
 
@@ -219,14 +217,14 @@ A: Gaultier
 void show_menu_pause(){
     if(aff_pause == 0){
         aff_pause = 1;
-        glutPassiveMotionFunc(NULL);
+        /*glutPassiveMotionFunc(NULL);*/
         glutSetCursor(GLUT_CURSOR_INHERIT);
     }
     else{
         aff_pause = 0;
         glutPassiveMotionFunc(mouvement_souris);
         if(!aff_amelioration)glutSetCursor(GLUT_CURSOR_NONE);
-        glutIdleFunc(animer);
+        /*glutIdleFunc(animer);*/
     }
 }
 

@@ -284,13 +284,9 @@ void afficher_interface(){
     }
     if(aff_amelioration){
         afficher_fenetre_amelioration(); /*changer la condition pour le booleen aff_amelioration*/
-        glutPostRedisplay();
-        glutIdleFunc(NULL);
     }
     if(aff_pause){
         afficher_fenetre_pause(); /*changer la condition pour le booleen aff_amelioration*/
-        glutPostRedisplay();
-        glutIdleFunc(NULL);
     }
     afficher_kill();
     afficher_vie();
