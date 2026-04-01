@@ -154,6 +154,10 @@ void animer(){
         regeneration_vie(carte_jeu->j);
         raffraichir();
         glutPostRedisplay();
+         maj_grille_dynamique(carte_jeu->liste_ennemi);
+        if(taille_ennemi(carte_jeu->liste_ennemi) < NBMAX_ENNEMI){
+            carte_jeu->liste_ennemi = ajouter_ennemi(creer_ennemi_alea(carte_jeu),carte_jeu->liste_ennemi);
+        }
     }
 }
 
@@ -217,7 +221,7 @@ void affichage(){
     /*Fin*/
     glutSwapBuffers();
    
-    maj_grille_dynamique(carte_jeu->liste_ennemi);
+   
     /*
     printf("NOMBRE OBJ dans la map: %d\n",taille_objet(carte_jeu->liste_objets)); 
     printf("POSITION DU JOUEUR SUR LA CARTE: (x:%f,y:%f)\n",carte_jeu->j->pos->x,carte_jeu->j->pos->y);
@@ -225,10 +229,7 @@ void affichage(){
                                                             ,coord_to_cell_x(carte_jeu->j->pos->y,grille_statique)
     );
     */
-    if(taille_ennemi(carte_jeu->liste_ennemi) < NBMAX_ENNEMI){
-        carte_jeu->liste_ennemi = ajouter_ennemi(creer_ennemi_alea(carte_jeu),carte_jeu->liste_ennemi);
-    }
-    niveau_suivant(carte_jeu->j);
+
     /* Mesure du temps */
     /*fin = clock();
     temps = (double)(fin - debut) / CLOCKS_PER_SEC;

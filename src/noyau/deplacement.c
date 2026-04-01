@@ -269,6 +269,7 @@ void avencer_vague_ennemi(carte c)
             j->xp += tmp->xp;
             log_message(NOYAU SUCC "un ennemie est mort");
             nbkill++;
+            niveau_suivant(c->j);
             /*printf("kill == %d\n",nbkill);*/
             c->liste_ennemi = supprimer_ennemi_ptr(c->liste_ennemi, tmp);
         }

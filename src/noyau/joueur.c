@@ -145,12 +145,11 @@ A: Adrien
 void niveau_suivant(joueur j){
     char buff[64];
 
-    if(j->xp >= j->niv * j->seuil){
+    if(j->xp >=j->seuil){
         sprintf(buff, "%s%s passage du niveau %d au niveau %d", NOYAU, SUCC, j->niv, j->niv + 1);
         log_message(buff);
-
+        j->xp -= j->seuil; /* garde le surplus */
         j->niv++;          /* niveau supérieur */
-        j->xp -= j->niv * j->seuil; /* garde le surplus */
         j->seuil *= 2;     /* seuil pour le prochain niveau */
         show_menu_upgrade(); /*affiche le menu d'amélioration*/
     }
