@@ -27,12 +27,14 @@ void sphere(float x, float y, float z, float radius, float r, float g, float b);
 
 void afficher_cercle3D(position c, float radius);
 
+objet creer_arbre(int x, int y, int z);
+
+objet creer_rocher(int x, int y, int z);
+
+objet creer_maison(int x, int y, int z);
+
 void afficher3d();
 
-void creer_arbre(carte c, int x, int y, int z);
 
-void creer_rocher(carte c, int x, int y, int z);
-
-void creer_maison(carte c, int x, int y, int z);
 
 #endif /*_COMPOSANT3D_H_*/

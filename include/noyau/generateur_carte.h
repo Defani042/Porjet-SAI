@@ -8,6 +8,14 @@
 
 carte creer_carte_test();
 
+objet creer_rocher_aleatoire(objet sol);
+
+objet creer_arbre_aleatoire(objet sol);
+
+objet creer_maison_aleatoire(objet sol);
+
+void creer_sol_aleatoire(carte c);
+
 void creer_monde(carte c);
 
 carte creer_carte_jeu();

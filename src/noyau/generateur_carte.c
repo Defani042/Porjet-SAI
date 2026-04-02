@@ -56,6 +56,113 @@ carte creer_carte_test()
     return c;
 }
 
+/*
+R: creer aléatoire des rochers sur un sol
+E: 1 TAD objet (le sol)
+S: 1 TAD objet (la liste des rochers)
+A: Adrien
+*/
+objet creer_rocher_aleatoire(objet sol){
+    int i;
+    double x,y,z;
+    objet tmp = NULL;
+    
+    for (i = 0; i < MAX_ROCHER; i++)
+    {
+        /* generation aléatoire */
+        x = alea_double(sol->pos->x,sol->pos->x + sol->largeur);
+        y = alea_double(sol->pos->y,sol->pos->y + sol->hauteur);
+        z = sol->pos->z+sol->longueur;
+
+        tmp = ajouter_debut(tmp,creer_rocher(x,y,z));      
+    }
+    return tmp;
+}
+
+/*
+R: creer aléatoire des arbres sur un sol
+E: 1 TAD objet (le sol)
+S: 1 TAD objet (la liste des arbres)
+A: Adrien
+*/
+objet creer_arbre_aleatoire(objet sol){
+    int i;
+    double x,y,z;
+    objet tmp = NULL;
+    
+    for (i = 0; i < MAX_ARBRE; i++)
+    {
+        /* generation aléatoire */
+        x = alea_double(sol->pos->x,sol->pos->x + sol->largeur);
+        y = alea_double(sol->pos->y,sol->pos->y + sol->hauteur);
+        z = sol->pos->z+sol->longueur;
+
+        tmp = ajouter_debut(tmp,creer_arbre(x,y,z));      
+    }
+    return tmp;
+}
+
+/*
+R: creer aléatoire des maison sur un sol
+E: 1 TAD objet (le sol)
+S: 1 TAD objet (la liste des maisons)
+A: Adrien
+*/
+objet creer_maison_aleatoire(objet sol){
+    int i;
+    double x,y,z;
+    objet tmp = NULL;
+    
+    for (i = 0; i < MAX_MAISON; i++)
+    {
+        /* generation aléatoire */
+        x = alea_double(sol->pos->x,sol->pos->x + sol->largeur);
+        y = alea_double(sol->pos->y,sol->pos->y + sol->hauteur);
+        z = sol->pos->z+sol->longueur;
+
+
+        tmp = ajouter_debut(tmp,creer_maison(x,y,z));      
+    }
+    return tmp;
+}
+
+
+/*
+R: creer aléatoire du sol
+E: 1 TAD carte
+S: rien
+A: Adrien
+*/
+void creer_sol_aleatoire(carte c){
+    int i;
+    objet plateforme = NULL;
+    objet rochers,village,foret;
+    double x,y,z;
+    for (i = 0; i <MAX_PLATEFORME; i++) {
+        x = alea_double(-1000, 1000);
+        y = alea_double(-1000, 1000);
+        z = alea_double(0, 800);
+
+        plateforme = creer_objet(creer_position(x, y, z),100, 100, 10);
+        couleur_objet(plateforme, 0.0f, 0.3f, 0.0f);
+        foret = creer_arbre_aleatoire(plateforme);
+        rochers = creer_rocher_aleatoire(plateforme);
+        village = creer_maison_aleatoire(plateforme);
+        /*ajoutons les objet à la scene*/
+        c->liste_objets = concat_objet(c->liste_objets, village);
+        c->liste_objets = concat_objet(c->liste_objets, rochers);
+        c->liste_objets = concat_objet(c->liste_objets, foret);
+        c->liste_objets = concat_objet(c->liste_objets,plateforme);
+    }
+
+}
+
+/*
+R: creer le monde du jeu
+E: 1 TAD carte
+S: rien
+A: Adrien
+*/
 void creer_monde(carte c){
     objet ciel1,ciel2,ciel3,ciel4,ciel5,ciel6;
 
@@ -82,12 +189,15 @@ void creer_monde(carte c){
     ciel6= creer_objet(creer_position(1000,-1000,-1000),2000,1,2000);
     couleur_objet(ciel6, 0.5f, 0.8f, 1.0f);
     c->liste_objets = ajouter_fin(c->liste_objets, ciel6);
-
-    creer_arbre(c,4,4,0);
-    creer_rocher(c,1,-6,0);
-    creer_maison(c,-6,1,0);
+    creer_sol_aleatoire(c);
 }
 
+/*
+R: creer la carte du jeu
+E: rien
+S: carte
+A: Adrien
+*/
 carte creer_carte_jeu(){
     carte c;
     objet sol;
@@ -104,7 +214,6 @@ carte creer_carte_jeu(){
     /*Création du sol et du plafond*/
     sol = creer_objet(creer_position(-250,-250,-2),500,500,2);
     couleur_objet(sol, 0.0f, 0.3f, 0.0f);
-
     creer_monde(c);
 
     init_tab_ennemi();

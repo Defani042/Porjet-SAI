@@ -256,7 +256,6 @@ void reset_joueur(joueur j){
     j->reg_jetpack = 0.05;
     j->reg_vie = 0.05;
     log_message(NOYAU SUCC "Joueur créé");
-    return j;
 
 }
 

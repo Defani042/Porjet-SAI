@@ -80,6 +80,10 @@
 #define GRILLE_SUCC NOYAU SUCC "Grille initialisée"
 #define GRILLE_ERR  NOYAU ERR  "Erreur lors de la création de la grille"
 
-
+/*-- Genération de la MAP --*/
+#define MAX_PLATEFORME 8
+#define MAX_ARBRE 10
+#define MAX_MAISON 2
+#define MAX_ROCHER 5 
 
 #endif /*_CONFIG_H_*/

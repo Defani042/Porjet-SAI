@@ -291,6 +291,81 @@ void afficher_cercle3D(position c, float radius)
     glEnd();
 }
 
+/*
+R: creer un arbre
+E: 3 double (x,y et z)
+S: 1 TAD objet (l'arbre)
+A: Adrien et Gaultier
+*/
+objet creer_arbre(int x, int y, int z){
+    objet arbre = NULL;
+    objet tronc;
+    objet feuillage;
+
+    tronc = creer_objet(creer_position(x,y,z),2,2,5);
+    couleur_objet(tronc, 0.345f, 0.160f, 0.0f);
+    arbre = ajouter_fin(arbre, tronc);
+
+    feuillage = creer_objet(creer_position(x-2,y-2,z+5),6,6,6);
+    couleur_objet(feuillage, 0.153f, 0.227f, 0.0f);
+    arbre = ajouter_fin(arbre, feuillage);
+
+    return arbre;
+}
+
+/*
+R: creer un rocher
+E: 3 double (x,y et z)
+S: 1 TAD objet (rocher)
+A: Adrien et Gaultier
+*/
+objet creer_rocher(int x, int y, int z){
+    objet rocher = NULL;
+    objet base;
+    objet couche1;
+
+    base = creer_objet(creer_position(x,y,z),4,5,2);
+    couleur_objet(base, 0.313f, 0.313f, 0.313f);
+    rocher = ajouter_fin(rocher, base);
+
+    couche1 = creer_objet(creer_position(x+1,y+2,z+2),2,3,1);
+    couleur_objet(couche1, 0.313f, 0.313f, 0.313f);
+    rocher = ajouter_fin(rocher, couche1);
+
+    return rocher;
+}
+
+/*
+R: creer une maison
+E: 3 double (x,y et z)
+S: 1 TAD objet (maison)
+A: Adrien et Gaultier
+*/
+objet creer_maison(int x, int y, int z){
+    objet maison = NULL;
+    objet base;
+    objet toit1,toit2,toit3;
+
+    base = creer_objet(creer_position(x,y,z),4,4,4);
+    couleur_objet(base, 0.8f, 0.5f, 0.3f);
+    maison = ajouter_fin(maison, base);
+
+    toit1 = creer_objet(creer_position(x-1,y-1,z+4),6,6,1);
+    couleur_objet(toit1, 0.8f, 0.1f, 0.1f);
+    maison = ajouter_fin(maison, toit1);
+
+    toit2 = creer_objet(creer_position(x,y,z+5),4,4,1);
+    couleur_objet(toit2, 0.8f, 0.1f, 0.1f);
+    maison = ajouter_fin(maison, toit2);
+
+    toit3 = creer_objet(creer_position(x+1,y+1,z+6),2,2,1);
+    couleur_objet(toit3, 0.8f, 0.1f, 0.1f);
+    maison = ajouter_fin(maison, toit3);
+
+    return maison;
+
+}
+
 
 /*
 R: affiche tous les objets 3d
@@ -308,51 +383,6 @@ void afficher3d(){
     sphere(-soleil_x, 0, -soleil_y, 50.0, 0.9f, 0.9f, 0.6f);
 }
 
-void creer_arbre(carte c, int x, int y, int z){
-    objet tronc;
-    objet feuillage;
 
-    tronc = creer_objet(creer_position(x,y,z),2,2,5);
-    couleur_objet(tronc, 0.345f, 0.160f, 0.0f);
-    c->liste_objets = ajouter_fin(c->liste_objets, tronc);
-
-    feuillage = creer_objet(creer_position(x-2,y-2,z+5),6,6,6);
-    couleur_objet(feuillage, 0.153f, 0.227f, 0.0f);
-    c->liste_objets = ajouter_fin(c->liste_objets, feuillage);
-}
-
-void creer_rocher(carte c, int x, int y, int z){
-    objet base;
-    objet couche1;
-
-    base = creer_objet(creer_position(x,y,z),4,5,2);
-    couleur_objet(base, 0.313f, 0.313f, 0.313f);
-    c->liste_objets = ajouter_fin(c->liste_objets, base);
-
-    couche1 = creer_objet(creer_position(x+1,y+2,z+2),2,3,1);
-    couleur_objet(couche1, 0.313f, 0.313f, 0.313f);
-    c->liste_objets = ajouter_fin(c->liste_objets, couche1);
-}
-
-void creer_maison(carte c, int x, int y, int z){
-    objet base;
-    objet toit1,toit2,toit3;
-
-    base = creer_objet(creer_position(x,y,z),4,4,4);
-    couleur_objet(base, 0.8f, 0.5f, 0.3f);
-    c->liste_objets = ajouter_fin(c->liste_objets, base);
-
-    toit1 = creer_objet(creer_position(x-1,y-1,z+4),6,6,1);
-    couleur_objet(toit1, 0.8f, 0.1f, 0.1f);
-    c->liste_objets = ajouter_fin(c->liste_objets, toit1);
-
-    toit2 = creer_objet(creer_position(x,y,z+5),4,4,1);
-    couleur_objet(toit2, 0.8f, 0.1f, 0.1f);
-    c->liste_objets = ajouter_fin(c->liste_objets, toit2);
-
-    toit3 = creer_objet(creer_position(x+1,y+1,z+6),2,2,1);
-    couleur_objet(toit3, 0.8f, 0.1f, 0.1f);
-    c->liste_objets = ajouter_fin(c->liste_objets, toit3);
-}
 
 #endif /*_COMPOSANT3D_C_*/
