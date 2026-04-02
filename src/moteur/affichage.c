@@ -112,6 +112,13 @@ S: rien
 A: Gaultier
 */
 void initialisation(){
+
+    /* Configuration de la lumière principale */
+    GLfloat light_pos[] = { 0.0f, 100.0f, 200.0f, 1.0f }; /*position au-dessus*/
+    GLfloat light_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f }; /*lumière blanche*/
+    GLfloat light_ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f }; /*lumière douce globale*/
+    GLfloat no_specular[] = {0.0f, 0.0f, 0.0f, 1.0f};
+
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowPosition(50, 50);  
     glutCreateWindow("Projet SAI");
@@ -131,6 +138,64 @@ void initialisation(){
     glutPassiveMotionFunc(mouvement_souris);
     glutMouseFunc(gerer_souris);
     glutMotionFunc(mouvement_souris);
+
+    /* ============================= */
+    /*   AMELIORATION VISUELLE       */
+    /* ============================= */
+
+
+    /* Fonction de comparaison du depth :
+       GL_LEQUAL = on garde le pixel le plus proche ou égal
+       -> évite certains bugs visuels (ex: clignotement) */
+    glDepthFunc(GL_LEQUAL);
+
+
+    /* Active le shading lisse (Gouraud) :
+       au lieu d'avoir des faces plates, les couleurs sont interpolées
+       -> rendu plus doux et plus réaliste */
+    glShadeModel(GL_SMOOTH);
+
+
+    /* Active le système de lumière OpenGL */
+    glEnable(GL_LIGHTING);
+
+    /* Active une seule lumière (meilleur rapport qualité/perf) */
+    glEnable(GL_LIGHT0);
+
+
+    /* Désactive la composante spéculaire (reflets brillants) :
+       -> moins de calculs
+       -> rendu moins "plastique", plus simple */
+    glLightfv(GL_LIGHT0, GL_SPECULAR, no_specular);
+
+
+    /* Normalise automatiquement les normales :
+       utile si on scale des objets (sinon la lumière devient fausse)
+       -> ajoute un petit coût, donc à éviter si pas nécessaire */
+    glEnable(GL_NORMALIZE);
+
+
+    /* Position de la lumière dans la scène :
+       ici au-dessus du monde (type "soleil") */
+    glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
+
+    /* Lumière diffuse :
+       c'est la lumière principale qui donne la couleur aux objets */
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+
+    /* Lumière ambiante :
+       lumière globale minimale pour éviter les zones trop sombres */
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+
+
+    /* Permet d'utiliser glColor() avec le système de lumière :
+       sans ça, les objets seraient gris (matériau par défaut) */
+    glEnable(GL_COLOR_MATERIAL);
+
+    /* Dit à OpenGL que glColor agit sur :
+       - la couleur ambiante
+       - la couleur diffuse */
+    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 }
 
 
