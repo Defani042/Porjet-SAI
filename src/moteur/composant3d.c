@@ -2,6 +2,7 @@
 #define _COMPOSANT3D_C_
 
 #include "moteur/composant3d.h"
+#include "moteur/texture.h"
 
 int nb_obj = 0;
 float angle_soleil = M_PI / 2.0f;
@@ -175,6 +176,10 @@ void afficher_ennemie(ennemi e){
     y2 = (float)o->hauteur;
     z2 = (float)o->longueur;
 
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture_ennemi);
+    glColor3f(1.0f, 1.0f, 1.0f);
+
     glBegin(GL_QUADS);
 
     glColor3f(1.0f, 0.1f, 0.0f);
@@ -191,31 +196,32 @@ void afficher_ennemie(ennemi e){
     glVertex3f(x2, y2, z1);
     glVertex3f(x1, y2, z1);
 
-    /* Face gauche - bleu */
-    glVertex3f(x1, y1, z1);
-    glVertex3f(x1, y1, z2);
-    glVertex3f(x1, y2, z2);
-    glVertex3f(x1, y2, z1);
+    /* --- Face gauche (texturée) --- */
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(x1, y1, z1);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(x1, y1, z2);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(x1, y2, z2);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(x1, y2, z1);
 
-    /* Face droite - jaune */
-    glVertex3f(x2, y1, z1);
-    glVertex3f(x2, y1, z2);
-    glVertex3f(x2, y2, z2);
-    glVertex3f(x2, y2, z1);
+    /* --- Face droite (texturée) --- */
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(x2, y1, z1);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(x2, y1, z2);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(x2, y2, z2);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(x2, y2, z1);
 
-    /* Face bas - cyan */
-    glVertex3f(x1, y1, z1);
-    glVertex3f(x2, y1, z1);
-    glVertex3f(x2, y1, z2);
-    glVertex3f(x1, y1, z2);
+    /* --- Face bas (texturée) --- */
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(x1, y1, z1);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(x2, y1, z1);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(x2, y1, z2);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(x1, y1, z2);
 
-    /* Face haut - magenta */
-    glVertex3f(x1, y2, z1);
-    glVertex3f(x2, y2, z1);
-    glVertex3f(x2, y2, z2);
-    glVertex3f(x1, y2, z2);
+    /* --- Face haut (texturée) --- */
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(x1, y2, z1);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(x2, y2, z1);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(x2, y2, z2);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(x1, y2, z2);
 
     glEnd();
+    glDisable(GL_TEXTURE_2D);
     glPopMatrix();
     /*avant les fonction ddu G*/
 }
