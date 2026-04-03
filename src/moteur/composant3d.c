@@ -177,12 +177,29 @@ void afficher_ennemie(ennemi e){
     z2 = (float)o->longueur;
 
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture_ennemi);
-    glColor3f(1.0f, 1.0f, 1.0f);
-
+    switch (e->classe){
+        case 2:{
+            glBindTexture(GL_TEXTURE_2D, texture_ennemi_A);
+            glColor3f(1.0f, 0.1f, 0.0f);
+            break;
+        }
+        case 1:{
+            glBindTexture(GL_TEXTURE_2D, texture_ennemi_S);
+            glColor3f(0.0f, 1.0f, 0.0f);
+            break;
+        }
+        case 0:{
+            glBindTexture(GL_TEXTURE_2D, texture_ennemi_T);
+            glColor3f(0.0f, 0.0f, 1.0f);
+            break;
+        }
+        default:{
+            glBindTexture(GL_TEXTURE_2D, texture_ennemi_A);
+            glColor3f(1.0f, 0.1f, 0.0f);
+            break;
+        }
+    }
     glBegin(GL_QUADS);
-
-    glColor3f(1.0f, 0.1f, 0.0f);
 
     /* Face avant - rouge */
     glVertex3f(x1, y1, z2);
@@ -269,31 +286,34 @@ void afficher_carte(carte c) {
     
 }
 
-
 /*
 R: affiche un cercle en 3D
 E: carte c
 S: rien
 A: Adrien
 */
-void afficher_cercle3D(position c, float radius)
-{   
+void afficher_cercle3D(position centre, float radius){
     int i;
-    float angle,x,y,z;
-    int segments = 100; /*nombre de segment du cercle*/
-    glBegin(GL_LINE_LOOP);
+    float hauteur = 0.7f; /* hauteur du cylindre */
+    int segments = 100; /* nombre de segments autour du cylindre */
+    float angle;
+    float x, y;
 
-    for(i = 0; i < segments; i++)
-    {
+    float z_bas = centre->z;           /* base du cylindre */
+    float z_haut = centre->z + hauteur; /* sommet du cylindre */
+
+    glBegin(GL_QUAD_STRIP); /* on crée des rectangles entre chaque segment */
+    for(i = 0; i <= segments; i++){
         angle = 2.0f * M_PI * i / segments;
 
-        x = c->x + radius * cos(angle);
-        y = c->y + radius * sin(angle);
-        z = c->z; /*parralléle au plan du point */
+        x = centre->x + radius * cos(angle);
+        y = centre->y + radius * sin(angle);
 
-        glVertex3f(x, y, z);
+        /* vertex sur la base */
+        glVertex3f(x, y, z_bas);
+        /* vertex sur le sommet */
+        glVertex3f(x, y, z_haut);
     }
-
     glEnd();
 }
 
@@ -384,6 +404,7 @@ void afficher3d(){
     float soleil_y = 950.0 * sin(angle_soleil);
     joueur j = carte_jeu->j;
     afficher_carte(carte_jeu);
+    glColor4f(0.5f, 0.0f, 0.5f, 0.4f);
     afficher_cercle3D(j->pos,j->taille);
     sphere(soleil_x, 0, soleil_y, 50.0, 0.7f, 0.7f, 0);
     sphere(-soleil_x, 0, -soleil_y, 50.0, 0.9f, 0.9f, 0.6f);

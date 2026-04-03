@@ -8,10 +8,14 @@
 #include <stdio.h>
 #include <GL/glut.h>
 
-GLuint texture_ennemi;
+GLuint texture_ennemi_A;
+GLuint texture_ennemi_S;
+GLuint texture_ennemi_T;
 
 void initialisation_texture() {
-    texture_ennemi = load_texture(PATH_TEXTURE_ENNEMI);
+    texture_ennemi_A = load_texture(PATH_TEXTURE_ENNEMI_A);
+    texture_ennemi_S = load_texture(PATH_TEXTURE_ENNEMI_S);
+    texture_ennemi_T = load_texture(PATH_TEXTURE_ENNEMI_T);
 }
 
 GLuint load_texture(const char *filename){
